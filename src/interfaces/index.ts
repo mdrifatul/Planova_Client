@@ -81,10 +81,12 @@ export interface Event {
   createdAt: string;
   updatedAt: string;
   organizerId: string;
+  category?: Category;
   organizer?: {
     id: string;
     name: string;
     email: string;
+    image?: string;
   };
 }
 

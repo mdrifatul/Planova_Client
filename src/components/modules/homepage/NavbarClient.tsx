@@ -31,6 +31,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { Roles } from "@/contants/roles";
 import { authClient } from "@/lib/auth-client";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -181,7 +182,7 @@ const NavbarClient = ({
                       className="p-3 mx-1 my-1 rounded-xl cursor-pointer hover:bg-zinc-100 dark:hover:bg-gray-800 focus:bg-zinc-100 dark:focus:bg-gray-800 focus:text-foreground font-medium transition-colors"
                     >
                       <Link
-                        href={`/${userRole === "ADMIN" ? "admin-dashboard" : userRole === "PROVIDER" ? "provider-dashboard" : "dashboard"}`}
+                        href={`/${userRole === Roles.admin ? "admin-dashboard" : userRole === Roles.organizer ? "organizer-dashboard" : userRole === Roles.moderator ? "moderator-dashboard" : "dashboard"}`}
                       >
                         <Settings className="mr-3 h-4 w-4" />
                         <span>Dashboard</span>

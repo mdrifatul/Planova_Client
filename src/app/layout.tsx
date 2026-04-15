@@ -1,3 +1,4 @@
+import ChatKitWidget from "@/components/chatkit/ChatKitWidget";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,10 +28,13 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <Providers>{children}</Providers>
+      <body className="flex flex-col" suppressHydrationWarning>
+        <Providers>
+          {children}
+          <ChatKitWidget />
+        </Providers>
       </body>
     </html>
   );
