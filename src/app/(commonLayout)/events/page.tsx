@@ -1,0 +1,149 @@
+import { getAllEventsAction } from "@/action/event.action";
+import { SearchEvents } from "@/components/layout/SearchEvents";
+import { EventCard } from "@/components/modules/homepage/EventCard";
+
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+export default async function EventsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string; query?: string }>;
+}) {
+  const { page, query } = await searchParams;
+  const currentPage = Number(page) || 1;
+  const limit = 8;
+  const skip = (currentPage - 1) * limit;
+
+  // Parse visibility from query if it contains "public" or "private"
+  let searchTerm = query;
+  let visibility: "PUBLIC" | "PRIVATE" | undefined;
+
+  if (query) {
+    const lowerQuery = query.toLowerCase();
+    if (lowerQuery.includes("public")) {
+      visibility = "PUBLIC";
+      // Remove "public" from searchTerm if it's the only keyword
+      if (lowerQuery === "public") {
+        searchTerm = undefined;
+      } else {
+        searchTerm = query.replace(/public\s*/gi, "").trim() || undefined;
+      }
+    } else if (lowerQuery.includes("private")) {
+      visibility = "PRIVATE";
+      // Remove "private" from searchTerm if it's the only keyword
+      if (lowerQuery === "private") {
+        searchTerm = undefined;
+      } else {
+        searchTerm = query.replace(/private\s*/gi, "").trim() || undefined;
+      }
+    }
+  }
+
+  const {
+    data: events,
+    meta,
+    error,
+  } = await getAllEventsAction(limit, skip, searchTerm, visibility);
+
+  if (error) {
+    return (
+      <div className="container mx-auto py-20 text-center">
+        <h2 className="text-2xl font-bold text-red-600">Error</h2>
+        <p className="text-zinc-500 mt-2">{error.message}</p>
+      </div>
+    );
+  }
+
+  const totalEvents = meta?.total || 0;
+  const totalPages = Math.ceil(totalEvents / limit);
+
+  return (
+    <div className="bg-zinc-50 dark:bg-gray-950 min-h-screen py-16">
+      <div className="container mx-auto px-4">
+        {/* Header Section */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+          <div className="text-center lg:text-left">
+            <h1 className="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
+              Discover <span className="text-teal-600">Events</span>
+            </h1>
+            <p className="text-zinc-600 dark:text-gray-400 text-lg max-w-2xl">
+              Browse through our curated selection of events. From tech
+              conferences to music festivals, find what moves you.
+            </p>
+          </div>
+          <SearchEvents />
+        </div>
+
+        {/* Events Grid */}
+        {!events || events.length === 0 ? (
+          <div className="py-20 text-center">
+            <p className="text-zinc-500 text-xl">
+              No events found at the moment.
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+              {events.map((event) => (
+                <EventCard key={event.id} event={event} />
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center mt-12">
+                <Pagination>
+                  <PaginationContent>
+                    <PaginationItem>
+                      <PaginationPrevious
+                        href={`/events?page=${Math.max(1, currentPage - 1)}${query ? `&query=${query}` : ""}`}
+                        aria-disabled={currentPage === 1}
+                        className={
+                          currentPage === 1
+                            ? "pointer-events-none opacity-50"
+                            : ""
+                        }
+                      />
+                    </PaginationItem>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                      (p) => (
+                        <PaginationItem key={p}>
+                          <PaginationLink
+                            href={`/events?page=${p}${query ? `&query=${query}` : ""}`}
+                            isActive={currentPage === p}
+                          >
+                            {p}
+                          </PaginationLink>
+                        </PaginationItem>
+                      ),
+                    )}
+
+                    <PaginationItem>
+                      <PaginationNext
+                        href={`/events?page=${Math.min(totalPages, currentPage + 1)}${query ? `&query=${query}` : ""}`}
+                        aria-disabled={currentPage === totalPages}
+                        className={
+                          currentPage === totalPages
+                            ? "pointer-events-none opacity-50"
+                            : ""
+                        }
+                      />
+                    </PaginationItem>
+                  </PaginationContent>
+                </Pagination>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
