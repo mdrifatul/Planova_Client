@@ -1,7 +1,16 @@
-export default function RootLayout({
+import { Navbar } from "@/components/modules/homepage/Navbar";
+import Footer from "@/components/shared/Footer";
+
+export default function HomeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div>{children}</div>;
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="mx-auto grow w-full">{children}</main>
+      <Footer />
+    </div>
+  );
 }

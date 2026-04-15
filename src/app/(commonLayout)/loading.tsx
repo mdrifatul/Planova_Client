@@ -1,5 +1,7 @@
-const loading = () => {
-  return <div>Looging...</div>;
+import Loading from "@/components/shared/Loading";
+
+const LoadingPage = () => {
+  return <Loading />;
 };
 
-export default loading;
+export default LoadingPage;

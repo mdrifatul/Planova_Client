@@ -3,16 +3,16 @@ import z from "zod";
 
 export const env = createEnv({
   server: {
-    BACKEND_URL: z.url(),
-    FRONTEND_URL: z.url(),
-    API_URL: z.url(),
-    AUTH_URL: z.url(),
+    BACKEND_URL: z.string().min(1),
+    FRONTEND_URL: z.string().min(1),
+    API_URL: z.string().min(1),
+    AUTH_URL: z.string().min(1),
     // OPENAI_API_KEY: z.string().min(1),
     // CHATKIT_WORKFLOW_ID: z.string().min(1),
   },
   client: {
-    NEXT_PUBLIC_APP_URL: z.url(),
-    NEXT_PUBLIC_BACKEND_URL: z.url(),
+    NEXT_PUBLIC_APP_URL: z.string().min(1),
+    NEXT_PUBLIC_BACKEND_URL: z.string().min(1),
   },
 
   runtimeEnv: {
