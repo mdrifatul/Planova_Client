@@ -119,34 +119,49 @@ export const reviewService = {
       if (limit) queryParams.append("limit", limit.toString());
       if (skip) queryParams.append("skip", skip.toString());
 
-      const res = await fetch(
-        `${env.API_URL}/reviews?${queryParams.toString()}`,
-        {
-          headers: {
-            Cookie: cookieStore.toString(),
-          },
-          cache: "no-store",
+      const url = `${env.API_URL}/reviews${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+      console.log("Fetching reviews from:", url);
+
+      const res = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
         },
-      );
+        cache: "no-store",
+      });
 
       if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error(`API Error fetching reviews [${res.status}]:`, errorData);
         return {
           data: null,
-          error: { message: "Failed to fetch reviews" },
+          error: {
+            message:
+              errorData?.message ||
+              errorData?.error ||
+              `Failed to fetch reviews (Status: ${res.status})`,
+          },
         };
       }
 
       const response = await res.json();
-      // API returns { data: { data: [...], meta: {...} } }
+      // API returns { data: [...] } or { data: { data: [...], meta: {...} } }
       const reviews = Array.isArray(response.data?.data)
         ? response.data.data
-        : [];
+        : Array.isArray(response.data)
+          ? response.data
+          : [];
       return { data: reviews, error: null };
     } catch (error) {
       console.error("Error fetching reviews:", error);
       return {
         data: null,
-        error: { message: "Something went wrong while fetching reviews" },
+        error: {
+          message:
+            error instanceof Error
+              ? error.message
+              : "Something went wrong while fetching reviews",
+        },
       };
     }
   },
@@ -163,29 +178,50 @@ export const reviewService = {
       if (limit) queryParams.append("limit", limit.toString());
       if (skip) queryParams.append("skip", skip.toString());
 
-      const res = await fetch(
-        `${env.API_URL}/reviews/event/${eventId}${queryParams.toString() ? `?${queryParams.toString()}` : ""}`,
-        {
-          headers: {
-            Cookie: cookieStore.toString(),
-          },
-          cache: "no-store",
+      const url = `${env.API_URL}/reviews/event/${eventId}${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+      const res = await fetch(url, {
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: cookieStore.toString(),
         },
-      );
+        cache: "no-store",
+      });
 
       if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error(
+          `API Error fetching event reviews [${res.status}]:`,
+          errorData,
+        );
         return {
           data: null,
-          error: { message: "Failed to fetch event reviews" },
+          error: {
+            message:
+              errorData?.message ||
+              errorData?.error ||
+              `Failed to fetch event reviews (Status: ${res.status})`,
+          },
         };
       }
 
-      const reviews = await res.json();
+      const response = await res.json();
+      // API returns { data: [...] } or { data: { data: [...], meta: {...} } }
+      const reviews = Array.isArray(response.data?.data)
+        ? response.data.data
+        : Array.isArray(response.data)
+          ? response.data
+          : [];
       return { data: reviews, error: null };
-    } catch {
+    } catch (error) {
+      console.error("Error fetching event reviews:", error);
       return {
         data: null,
-        error: { message: "Something went wrong while fetching event reviews" },
+        error: {
+          message:
+            error instanceof Error
+              ? error.message
+              : "Something went wrong while fetching event reviews",
+        },
       };
     }
   },
@@ -194,26 +230,42 @@ export const reviewService = {
   getReviewById: async function (id: string): Promise<ApiResponse<Review>> {
     try {
       const cookieStore = await cookies();
-      const res = await fetch(`${env.API_URL}/reviews/${id}`, {
+      const url = `${env.API_URL}/reviews/${id}`;
+      const res = await fetch(url, {
         headers: {
+          "Content-Type": "application/json",
           Cookie: cookieStore.toString(),
         },
         cache: "no-store",
       });
 
       if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        console.error(`API Error fetching review [${res.status}]:`, errorData);
         return {
           data: null,
-          error: { message: "Failed to fetch review" },
+          error: {
+            message:
+              errorData?.message ||
+              errorData?.error ||
+              `Failed to fetch review (Status: ${res.status})`,
+          },
         };
       }
 
-      const review = await res.json();
+      const response = await res.json();
+      const review = response.data || response;
       return { data: review, error: null };
-    } catch {
+    } catch (error) {
+      console.error("Error fetching review:", error);
       return {
         data: null,
-        error: { message: "Something went wrong while fetching review" },
+        error: {
+          message:
+            error instanceof Error
+              ? error.message
+              : "Something went wrong while fetching review",
+        },
       };
     }
   },

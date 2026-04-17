@@ -22,8 +22,7 @@ export function CommunityFeedback() {
     const fetchReviews = async () => {
       try {
         const response = await getAllReviewsAction(5);
-        console.log("Review response:", response);
-
+        console.log(response);
         if (response.error) {
           console.error("API Error:", response.error);
           setTestimonials([]);

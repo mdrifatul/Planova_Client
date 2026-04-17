@@ -20,14 +20,15 @@ export const categoryService = {
       });
 
       if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
         return {
           data: null,
-          error: { message: "Failed to create category" },
+          error: { message: errorData?.message || "Failed to create category" },
         };
       }
 
       const category = await res.json();
-      return { data: category, error: null };
+      return { data: category.data || category, error: null };
     } catch {
       return {
         data: null,
@@ -39,19 +40,26 @@ export const categoryService = {
   // Get all categories
   getAllCategories: async function (): Promise<ApiResponse<Category[]>> {
     try {
+      const cookieStore = await cookies();
       const res = await fetch(`${env.API_URL}/categories`, {
+        headers: {
+          Cookie: cookieStore.toString(),
+        },
         cache: "no-store",
       });
 
       if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
         return {
           data: null,
-          error: { message: "Failed to fetch categories" },
+          error: {
+            message: errorData?.message || "Failed to fetch categories",
+          },
         };
       }
 
       const categories = await res.json();
-      return { data: categories, error: null };
+      return { data: categories.data || categories, error: null };
     } catch {
       return {
         data: null,
@@ -75,9 +83,10 @@ export const categoryService = {
       });
 
       if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
         return {
           data: null,
-          error: { message: "Failed to delete category" },
+          error: { message: errorData?.message || "Failed to delete category" },
         };
       }
 

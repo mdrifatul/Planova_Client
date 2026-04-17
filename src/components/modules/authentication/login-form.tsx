@@ -39,7 +39,7 @@ export function LoginForm({
   const handleGoogleLogin = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+      callbackURL: env.NEXT_PUBLIC_APP_URL,
     });
   };
 
@@ -64,7 +64,7 @@ export function LoginForm({
         toast.success("User Logged In Successfully", { id: toastId });
         router.push("/");
         router.refresh();
-      } catch (err) {
+      } catch {
         toast.error("Something went wrong, please try again.", { id: toastId });
       }
     },
@@ -74,7 +74,9 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border border-white/20 dark:border-gray-800 rounded-2xl shadow-lg">
         <CardHeader>
-          <CardTitle className="text-foreground">Login to your account</CardTitle>
+          <CardTitle className="text-foreground">
+            Login to your account
+          </CardTitle>
           <CardDescription className="text-muted-foreground">
             Enter your email below to login to your account
           </CardDescription>
@@ -88,9 +90,8 @@ export function LoginForm({
             }}
           >
             <FieldGroup>
-              <form.Field
-                name="email"
-                children={(field) => {
+              <form.Field name="email">
+                {(field) => {
                   const isInvalid =
                     field.state.meta.isTouched && !field.state.meta.isValid;
 
@@ -111,10 +112,9 @@ export function LoginForm({
                     </Field>
                   );
                 }}
-              />
-              <form.Field
-                name="password"
-                children={(field) => {
+              </form.Field>
+              <form.Field name="password">
+                {(field) => {
                   const isInvalid =
                     field.state.meta.isTouched && !field.state.meta.isValid;
 
@@ -136,7 +136,7 @@ export function LoginForm({
                     </Field>
                   );
                 }}
-              />
+              </form.Field>
             </FieldGroup>
           </form>
         </CardContent>

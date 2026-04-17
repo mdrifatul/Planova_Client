@@ -53,18 +53,29 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
     onSubmit: async ({ value }) => {
       const toastId = toast.loading("Creating User");
       try {
+        console.log("Attempting registration with:", {
+          email: value.email,
+          name: value.name,
+        });
         const { data, error } = await authClient.signUp.email(value);
-        console.log(data);
+
         if (error) {
-          toast.error(error.message, { id: toastId });
+          console.error("Registration error:", error);
+          toast.error(error.message || "Registration failed", { id: toastId });
           return;
         }
 
-        toast.success("User Created Successfully", { id: toastId });
-        router.push("/login");
-        router.refresh();
+        if (data) {
+          console.log("Registration successful:", data);
+          toast.success("User Created Successfully", { id: toastId });
+          router.push("/login");
+          router.refresh();
+        }
       } catch (err) {
-        toast.error("Something went wrong, please try again.", { id: toastId });
+        console.error("Registration exception:", err);
+        const errorMessage =
+          err instanceof Error ? err.message : "Something went wrong";
+        toast.error(errorMessage, { id: toastId });
       }
     },
   });
@@ -89,15 +100,14 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
           }}
         >
           <FieldGroup>
-            <form.Field
-              name="name"
-              children={(field) => {
+            <form.Field name="name">
+              {(field) => {
                 const isInvalid =
                   field.state.meta.isTouched && !field.state.meta.isValid;
 
                 return (
                   <Field data-invalid={isInvalid}>
-                    <FieldLabel htmlFor={field.name}>name</FieldLabel>
+                    <FieldLabel htmlFor={field.name}>Name</FieldLabel>
                     <Input
                       type="text"
                       id={field.name}
@@ -112,10 +122,9 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
                   </Field>
                 );
               }}
-            />
-            <form.Field
-              name="email"
-              children={(field) => {
+            </form.Field>
+            <form.Field name="email">
+              {(field) => {
                 const isInvalid =
                   field.state.meta.isTouched && !field.state.meta.isValid;
 
@@ -136,10 +145,9 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
                   </Field>
                 );
               }}
-            />
-            <form.Field
-              name="password"
-              children={(field) => {
+            </form.Field>
+            <form.Field name="password">
+              {(field) => {
                 const isInvalid =
                   field.state.meta.isTouched && !field.state.meta.isValid;
 
@@ -161,7 +169,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
                   </Field>
                 );
               }}
-            />
+            </form.Field>
           </FieldGroup>
         </form>
       </CardContent>

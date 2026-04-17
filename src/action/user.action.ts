@@ -35,3 +35,8 @@ export const getUserByIdAction = async (id: string) => {
   const res = await userService.getUserById(id);
   return res;
 };
+
+export const deleteUserAction = async (id: string) => {
+  const res = await userService.deleteUser(id);
+  return res;
+};

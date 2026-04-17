@@ -4,10 +4,10 @@ import { cookies } from "next/headers";
 export const userService = {
   getSession: async function () {
     try {
-      const cookieStor = await cookies();
+      const cookieStore = await cookies();
       const res = await fetch(`${env.AUTH_URL}/get-session`, {
         headers: {
-          Cookie: cookieStor.toString(),
+          Cookie: cookieStore.toString(),
         },
         cache: "no-store",
       });
@@ -28,16 +28,38 @@ export const userService = {
   },
 
   getAllUser: async function () {
-    const cookieStor = await cookies();
-    const res = await fetch(`${env.API_URL}/users`, {
-      headers: {
-        Cookie: cookieStor.toString(),
-      },
-      cache: "no-store",
-    });
+    try {
+      const cookieStore = await cookies();
+      const res = await fetch(`${env.API_URL}/users`, {
+        headers: {
+          Cookie: cookieStore.toString(),
+        },
+        cache: "no-store",
+      });
 
-    const users = await res.json();
-    return { data: users.data || users, error: null };
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        return {
+          data: null,
+          error: {
+            message: errorData?.message || "Failed to retrieve user directory",
+          },
+        };
+      }
+
+      const users = await res.json();
+      return { data: users.data || users, error: null };
+    } catch (err) {
+      return {
+        data: null,
+        error: {
+          message:
+            err instanceof Error
+              ? err.message
+              : "System synchronization failure",
+        },
+      };
+    }
   },
 
   updateUserStatus: async function (id: string, status?: string) {
@@ -167,6 +189,37 @@ export const userService = {
 
       const user = await res.json();
       return { data: user.data || user, error: null };
+    } catch (err) {
+      return {
+        data: null,
+        error: {
+          message: err instanceof Error ? err.message : "Something went wrong",
+        },
+      };
+    }
+  },
+
+  deleteUser: async function (id: string) {
+    try {
+      const cookieStor = await cookies();
+      const res = await fetch(`${env.API_URL}/users/${id}`, {
+        method: "DELETE",
+        headers: {
+          Cookie: cookieStor.toString(),
+        },
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        return {
+          data: null,
+          error: { message: errorData?.message || "Failed to delete user" },
+        };
+      }
+
+      const data = await res.json();
+      return { data: data.data || data, error: null };
     } catch (err) {
       return {
         data: null,
