@@ -12,7 +12,6 @@ import { Event } from "@/interfaces";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface EventCardProps {
@@ -20,7 +19,6 @@ interface EventCardProps {
 }
 
 export function EventCard({ event }: EventCardProps) {
-  const router = useRouter();
   const formatTime = (time?: string) => {
     if (!time) return "";
     try {

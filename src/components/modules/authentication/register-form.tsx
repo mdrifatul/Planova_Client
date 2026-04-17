@@ -17,6 +17,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { env } from "@/env";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
 
@@ -36,7 +37,7 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
   const handleGoogleLogin = async () => {
     await authClient.signIn.social({
       provider: "google",
-      callbackURL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+      callbackURL: env.NEXT_PUBLIC_APP_URL,
     });
   };
 

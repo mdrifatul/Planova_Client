@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, Menu, Settings, Store, User } from "lucide-react";
+import { LogOut, Menu, Settings, Sparkles, Store, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -34,6 +34,7 @@ import {
 import { Roles } from "@/contants/roles";
 import { authClient } from "@/lib/auth-client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ModeToggle } from "./../../layout/ModeToggle";
@@ -74,7 +75,7 @@ interface NavbarClientProps {
 const NavbarClient = ({
   logo = {
     url: "/",
-    src: "/",
+    src: "/logo1.png",
     alt: "logo",
     title: "Planova",
   },
@@ -114,13 +115,11 @@ const NavbarClient = ({
         <nav className="hidden items-center justify-between lg:flex">
           <div className="flex items-center gap-8">
             <a href={logo.url} className="flex items-center gap-2.5 group">
-              {/* <div className="flex h-10 w-10 items-center justify-center group-hover:scale-105 transition-transform">
-                <img
-                  src="/logo.png"
-                  alt="FoodHub Logo"
-                  className="h-full w-full object-contain drop-shadow-sm"
-                />
-              </div> */}
+              <span>
+                {logo.src && (
+                  <Image src={logo.src} width={32} height={32} alt={logo.alt} />
+                )}
+              </span>
               <span className="text-3xl font-black tracking-widest bg-clip-text text-teal-600 drop-shadow-sm">
                 Planova
               </span>
@@ -221,10 +220,13 @@ const NavbarClient = ({
         </nav>
 
         {/* Mobile Menu */}
-        <div className="block lg:hidden">
+        <div className="w-11/12 mx-auto block lg:hidden">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
+              <span className="flex aspect-square size-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-primary/60 text-primary-foreground">
+                <Sparkles className="size-4" />
+              </span>
               <span className="text-xl font-black tracking-widest bg-linear-to-r from-teal-500 to-teal-400 bg-clip-text text-transparent drop-shadow-sm">
                 PLANOVA
               </span>

@@ -206,7 +206,7 @@ export default function ChatKitWidget() {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 p-3 sm:p-4 rounded-full bg-teal-500 hover:bg-teal-600 dark:bg-teal-600 dark:hover:bg-teal-700 text-white shadow-lg hover:shadow-teal-500/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center border-0 pointer-events-auto"
+        className="fixed bottom-10 sm:bottom-20 right-4 sm:right-6 z-50 p-3 sm:p-4 rounded-full bg-teal-500 hover:bg-teal-600 dark:bg-teal-600 dark:hover:bg-teal-700 text-white shadow-lg hover:shadow-teal-500/30 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center border-0 pointer-events-auto"
         title={isOpen ? "Close assistant" : "Open assistant"}
       >
         <AnimatePresence mode="wait">

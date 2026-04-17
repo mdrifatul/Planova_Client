@@ -49,7 +49,7 @@ export default async function EventDetailsPage({
       {/* Hero Section */}
       <div className="relative w-full h-[60vh] min-h-100 overflow-hidden">
         <Image
-          src={event.imageUrl || "/images/event-hero.jpg"}
+          src={event.imageUrl || "/images/event.jpg"}
           alt={"event image"}
           fill
           className="object-cover"

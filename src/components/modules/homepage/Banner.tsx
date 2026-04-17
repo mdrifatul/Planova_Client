@@ -25,7 +25,7 @@ export function Banner() {
   };
 
   return (
-    <section className="relative w-full h-dvh flex items-center justify-center overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-500">
+    <section className="relative container mx-auto h-dvh flex items-center justify-center overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-500">
       <div className="relative z-10 w-full flex flex-col items-center justify-center h-full px-2 sm:px-4">
         <motion.div
           className="flex flex-col items-center text-center w-full"
@@ -35,7 +35,7 @@ export function Banner() {
         >
           <motion.h1
             variants={itemVariants}
-            className="w-full text-left sm:text-center text-[10vw] md:text-[8vw] font-black tracking-tighter text-slate-900 dark:text-white leading-[0.95] mb-8 lg:mb-12"
+            className="w-full text-left sm:text-center text-[15vw] md:text-[8vw] font-black tracking-tighter text-slate-900 dark:text-white leading-[0.95] mb-8 lg:mb-12"
           >
             Find Amazing Events <br />
             <span className="text-teal-600">happening in</span>{" "}

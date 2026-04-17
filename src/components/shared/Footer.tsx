@@ -1,4 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const Footer = () => {
@@ -11,6 +12,9 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group">
+              <span>
+                <Image src={"/logo1.png"} width={32} height={32} alt={"Logo"} />
+              </span>
               <span className="text-3xl font-black tracking-widest bg-clip-text text-teal-600 drop-shadow-sm">
                 PLANOVA
               </span>
