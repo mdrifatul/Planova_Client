@@ -43,43 +43,87 @@ export const eventService = {
   },
 
   // Get all events (public)
-  getAllEvents: async function (
-    limit?: number,
-    skip?: number,
-    searchTerm?: string,
-    visibility?: "PUBLIC" | "PRIVATE",
-  ): Promise<ApiResponse<Event[]>> {
+  getAllEvents: async function (params?: {
+    limit?: number;
+    skip?: number;
+    page?: number;
+    searchTerm?: string;
+    visibility?: "PUBLIC" | "PRIVATE";
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+    include?: Array<"organizer" | "category" | "_count">;
+    [key: string]: unknown;
+  }): Promise<ApiResponse<Event[]>> {
     try {
-      const params = new URLSearchParams();
-      if (limit) params.append("limit", limit.toString());
-      if (skip) params.append("skip", skip.toString());
-      if (searchTerm) params.append("searchTerm", searchTerm);
-      if (visibility) params.append("visibility", visibility);
+      const queryParams = new URLSearchParams();
 
-      const res = await fetch(
-        `${env.API_URL}/events${params.toString() ? `?${params.toString()}` : ""}`,
-        {
-          cache: "no-store",
-        },
-      );
+      if (params?.limit !== undefined)
+        queryParams.append("limit", params.limit.toString());
+      if (params?.skip !== undefined)
+        queryParams.append("skip", params.skip.toString());
+      if (params?.page !== undefined)
+        queryParams.append("page", params.page.toString());
+      if (params?.searchTerm)
+        queryParams.append("searchTerm", params.searchTerm);
+      if (params?.visibility)
+        queryParams.append("visibility", params.visibility);
+      if (params?.sortBy) queryParams.append("sortBy", params.sortBy);
+      if (params?.sortOrder) queryParams.append("sortOrder", params.sortOrder);
+
+      params?.include?.forEach((inc) => queryParams.append("include", inc));
+
+      const reserved = new Set([
+        "limit",
+        "page",
+        "skip",
+        "searchTerm",
+        "visibility",
+        "sortBy",
+        "sortOrder",
+        "include",
+      ]);
+      for (const [key, value] of Object.entries(params ?? {})) {
+        if (!reserved.has(key) && value !== undefined && value !== null) {
+          queryParams.append(key, String(value));
+        }
+      }
+
+      const url = `${env.API_URL}/events${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
+      console.log("→ Fetching from URL:", url);
+
+      const res = await fetch(url, {
+        cache: "no-store",
+      });
+
+      console.log("→ Response status:", res.status, res.ok);
 
       if (!res.ok) {
+        const errorText = await res.text();
+        console.error("→ Error response:", errorText);
         return {
           data: null,
-          error: { message: "Failed to fetch events" },
+          error: { message: `Failed to fetch events: ${res.status}` },
         };
       }
 
       const response = await res.json();
-      return {
+      console.log("→ Full API response:", response);
+
+      const result = {
         data: response.data || response,
         meta: response.meta,
         error: null,
       };
-    } catch {
+
+      console.log("→ Parsed result:", result);
+      return result;
+    } catch (err) {
+      console.error("→ Catch error:", err);
       return {
         data: null,
-        error: { message: "Something went wrong while fetching events" },
+        error: {
+          message: `Something went wrong while fetching events: ${err instanceof Error ? err.message : String(err)}`,
+        },
       };
     }
   },

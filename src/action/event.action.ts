@@ -19,18 +19,31 @@ export const createEventAction = async (
 
 // Get all events
 export const getAllEventsAction = async (
-  limit?: number,
-  skip?: number,
-  searchTerm?: string,
-  visibility?: "PUBLIC" | "PRIVATE",
+  p0?: any,
+  p1?: number,
+  params?: {
+    limit?: number;
+    skip?: number;
+    page?: number;
+    searchTerm?: string;
+    visibility?: "PUBLIC" | "PRIVATE";
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+    include?: Array<"organizer" | "category" | "_count">;
+    [key: string]: unknown;
+  },
 ): Promise<ApiResponse<Event[]>> => {
-  const res = await eventService.getAllEvents(
-    limit,
-    skip,
-    searchTerm,
-    visibility,
-  );
-  return res;
+  if (typeof p0 === "object" && p0 !== null) {
+    return await eventService.getAllEvents(p0);
+  }
+
+  const effectiveParams = {
+    ...params,
+    limit: p0,
+    skip: p1,
+  };
+
+  return await eventService.getAllEvents(effectiveParams);
 };
 
 // Get my events (organizer only)

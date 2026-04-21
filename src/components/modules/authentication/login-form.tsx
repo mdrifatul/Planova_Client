@@ -55,7 +55,6 @@ export function LoginForm({
       const toastId = toast.loading("Logging in User");
       try {
         const { data, error } = await authClient.signIn.email(value);
-        console.log(data);
         if (error) {
           toast.error(error.message, { id: toastId });
           return;

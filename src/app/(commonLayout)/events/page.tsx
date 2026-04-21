@@ -1,5 +1,7 @@
+import { getAllCategoriesAction } from "@/action/category.action";
 import { getAllEventsAction } from "@/action/event.action";
 import { SearchEvents } from "@/components/layout/SearchEvents";
+import { CategoryFilter } from "@/components/modules/events/CategoryFilter";
 import { EventCard } from "@/components/modules/homepage/EventCard";
 
 import {
@@ -14,12 +16,14 @@ import {
 export default async function EventsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string; query?: string }>;
+  searchParams: Promise<{ page?: string; query?: string; category?: string }>;
 }) {
-  const { page, query } = await searchParams;
+  const { page, query, category } = await searchParams;
   const currentPage = Number(page) || 1;
-  const limit = 8;
-  const skip = (currentPage - 1) * limit;
+  const limit = 12;
+
+  // Fetch categories for the filter
+  const { data: categories } = await getAllCategoriesAction();
 
   // Parse visibility from query if it contains "public" or "private"
   let searchTerm = query;
@@ -29,28 +33,31 @@ export default async function EventsPage({
     const lowerQuery = query.toLowerCase();
     if (lowerQuery.includes("public")) {
       visibility = "PUBLIC";
-      // Remove "public" from searchTerm if it's the only keyword
-      if (lowerQuery === "public") {
-        searchTerm = undefined;
-      } else {
-        searchTerm = query.replace(/public\s*/gi, "").trim() || undefined;
-      }
+      searchTerm =
+        lowerQuery === "public"
+          ? undefined
+          : query.replace(/public\s*/gi, "").trim() || undefined;
     } else if (lowerQuery.includes("private")) {
       visibility = "PRIVATE";
-      // Remove "private" from searchTerm if it's the only keyword
-      if (lowerQuery === "private") {
-        searchTerm = undefined;
-      } else {
-        searchTerm = query.replace(/private\s*/gi, "").trim() || undefined;
-      }
+      searchTerm =
+        lowerQuery === "private"
+          ? undefined
+          : query.replace(/private\s*/gi, "").trim() || undefined;
     }
   }
 
-  const {
-    data: events,
-    meta,
-    error,
-  } = await getAllEventsAction(limit, skip, searchTerm, visibility);
+  const actionParams = {
+    limit,
+    page: currentPage,
+    include: ["organizer", "category", "_count"] as Array<
+      "organizer" | "category" | "_count"
+    >,
+    ...(searchTerm !== undefined && { searchTerm }),
+    ...(visibility !== undefined && { visibility }),
+    ...(category !== undefined && { categoryId: category }),
+  };
+
+  const { data: events, meta, error } = await getAllEventsAction(actionParams);
 
   if (error) {
     return (
@@ -68,7 +75,7 @@ export default async function EventsPage({
     <div className="bg-zinc-50 dark:bg-gray-950 min-h-screen py-16">
       <div className="container mx-auto px-4">
         {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
               Discover <span className="text-teal-600">Events</span>
@@ -80,6 +87,11 @@ export default async function EventsPage({
           </div>
           <SearchEvents />
         </div>
+
+        {/* Category Filter */}
+        {categories && categories.length > 0 && (
+          <CategoryFilter categories={categories} />
+        )}
 
         {/* Events Grid */}
         {!events || events.length === 0 ? (
@@ -103,7 +115,7 @@ export default async function EventsPage({
                   <PaginationContent>
                     <PaginationItem>
                       <PaginationPrevious
-                        href={`/events?page=${Math.max(1, currentPage - 1)}${query ? `&query=${query}` : ""}`}
+                        href={`/events?page=${Math.max(1, currentPage - 1)}${query ? `&query=${query}` : ""}${category ? `&category=${category}` : ""}`}
                         aria-disabled={currentPage === 1}
                         className={
                           currentPage === 1
@@ -117,7 +129,7 @@ export default async function EventsPage({
                       (p) => (
                         <PaginationItem key={p}>
                           <PaginationLink
-                            href={`/events?page=${p}${query ? `&query=${query}` : ""}`}
+                            href={`/events?page=${p}${query ? `&query=${query}` : ""}${category ? `&category=${category}` : ""}`}
                             isActive={currentPage === p}
                           >
                             {p}
@@ -128,7 +140,7 @@ export default async function EventsPage({
 
                     <PaginationItem>
                       <PaginationNext
-                        href={`/events?page=${Math.min(totalPages, currentPage + 1)}${query ? `&query=${query}` : ""}`}
+                        href={`/events?page=${Math.min(totalPages, currentPage + 1)}${query ? `&query=${query}` : ""}${category ? `&category=${category}` : ""}`}
                         aria-disabled={currentPage === totalPages}
                         className={
                           currentPage === totalPages
