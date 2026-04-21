@@ -120,7 +120,6 @@ export const reviewService = {
       if (skip) queryParams.append("skip", skip.toString());
 
       const url = `${env.API_URL}/reviews${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
-      console.log("Fetching reviews from:", url);
 
       const res = await fetch(url, {
         headers: {

@@ -53,10 +53,6 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
     onSubmit: async ({ value }) => {
       const toastId = toast.loading("Creating User");
       try {
-        console.log("Attempting registration with:", {
-          email: value.email,
-          name: value.name,
-        });
         const { data, error } = await authClient.signUp.email(value);
 
         if (error) {
@@ -66,7 +62,6 @@ export function RegisterForm({ ...props }: React.ComponentProps<typeof Card>) {
         }
 
         if (data) {
-          console.log("Registration successful:", data);
           toast.success("User Created Successfully", { id: toastId });
           router.push("/login");
           router.refresh();

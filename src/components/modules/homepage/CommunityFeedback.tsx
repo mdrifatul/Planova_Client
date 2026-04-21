@@ -22,16 +22,13 @@ export function CommunityFeedback() {
     const fetchReviews = async () => {
       try {
         const response = await getAllReviewsAction(5);
-        console.log(response);
         if (response.error) {
-          console.error("API Error:", response.error);
           setTestimonials([]);
           setLoading(false);
           return;
         }
 
         if (response.data && Array.isArray(response.data)) {
-          console.log("Reviews fetched:", response.data.length);
           const mappedTestimonials: Testimonial[] = response.data.map(
             (review: Review) => ({
               id: review.id,

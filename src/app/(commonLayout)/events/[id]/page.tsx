@@ -15,7 +15,6 @@ export default async function EventDetailsPage({
 }) {
   const { id } = await params;
   const { data: event, error } = await getEventByIdAction(id);
-  console.log(event);
 
   if (error || !event) {
     return notFound();

@@ -40,13 +40,6 @@ export function JoinCommunity() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto">
-              <div className="w-full relative group">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full h-16 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition-all font-medium"
-                />
-              </div>
               <Link
                 href="/contact"
                 className="w-full sm:w-auto h-16 px-8 rounded-2xl bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold transition-all flex items-center justify-center gap-3 group shrink-0"

@@ -108,7 +108,7 @@ export function EventCard({ event }: EventCardProps) {
   );
 }
 
-export function EventCardPreview() {
+export function EventCardPreview({ limit = 8 }: { limit?: number }) {
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -117,7 +117,7 @@ export function EventCardPreview() {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const response = await getAllEventsAction(4, 0);
+        const response = await getAllEventsAction(limit, 0);
         if (response.data && Array.isArray(response.data)) {
           setEvents(response.data);
         } else {
@@ -132,7 +132,7 @@ export function EventCardPreview() {
     };
 
     fetchEvents();
-  }, []);
+  }, [limit]);
 
   if (loading) {
     return (
