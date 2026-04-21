@@ -131,7 +131,6 @@ export const reviewService = {
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        console.error(`API Error fetching reviews [${res.status}]:`, errorData);
         return {
           data: null,
           error: {
@@ -152,7 +151,6 @@ export const reviewService = {
           : [];
       return { data: reviews, error: null };
     } catch (error) {
-      console.error("Error fetching reviews:", error);
       return {
         data: null,
         error: {
@@ -188,10 +186,6 @@ export const reviewService = {
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        console.error(
-          `API Error fetching event reviews [${res.status}]:`,
-          errorData,
-        );
         return {
           data: null,
           error: {
@@ -212,7 +206,6 @@ export const reviewService = {
           : [];
       return { data: reviews, error: null };
     } catch (error) {
-      console.error("Error fetching event reviews:", error);
       return {
         data: null,
         error: {
@@ -240,7 +233,6 @@ export const reviewService = {
 
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({}));
-        console.error(`API Error fetching review [${res.status}]:`, errorData);
         return {
           data: null,
           error: {
@@ -256,7 +248,6 @@ export const reviewService = {
       const review = response.data || response;
       return { data: review, error: null };
     } catch (error) {
-      console.error("Error fetching review:", error);
       return {
         data: null,
         error: {

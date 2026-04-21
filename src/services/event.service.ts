@@ -89,17 +89,13 @@ export const eventService = {
       }
 
       const url = `${env.API_URL}/events${queryParams.toString() ? `?${queryParams.toString()}` : ""}`;
-      console.log("→ Fetching from URL:", url);
 
       const res = await fetch(url, {
         cache: "no-store",
       });
 
-      console.log("→ Response status:", res.status, res.ok);
-
       if (!res.ok) {
         const errorText = await res.text();
-        console.error("→ Error response:", errorText);
         return {
           data: null,
           error: { message: `Failed to fetch events: ${res.status}` },
@@ -107,7 +103,6 @@ export const eventService = {
       }
 
       const response = await res.json();
-      console.log("→ Full API response:", response);
 
       const result = {
         data: response.data || response,
@@ -115,10 +110,8 @@ export const eventService = {
         error: null,
       };
 
-      console.log("→ Parsed result:", result);
       return result;
     } catch (err) {
-      console.error("→ Catch error:", err);
       return {
         data: null,
         error: {
