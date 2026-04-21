@@ -5,6 +5,7 @@ import { NavMain } from "@/components/ui/nav-main";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
@@ -15,6 +16,7 @@ import { organizerRouter } from "@/router/organizerRouter";
 import { userRouter } from "@/router/userRouter";
 import { Route } from "@/types/route.type";
 import * as React from "react";
+import { NavUser } from "./nav-user";
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   user: { name: string; email: string; image?: string; role: string };
@@ -53,9 +55,9 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
       <SidebarContent>
         <NavMain items={routes} />
       </SidebarContent>
-      {/* <SidebarFooter className="border-t border-zinc-200 dark:border-zinc-800/50 pt-2">
+      <SidebarFooter className="border-t border-zinc-200 dark:border-zinc-800/50 pt-2">
         <NavUser user={user} />
-      </SidebarFooter> */}
+      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   );

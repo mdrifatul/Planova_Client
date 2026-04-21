@@ -1,6 +1,6 @@
 "use client";
 
-import { LogOut, Menu, Settings, Sparkles, Store, User } from "lucide-react";
+import { LogOut, Menu, Settings, Store, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -75,7 +75,7 @@ interface NavbarClientProps {
 const NavbarClient = ({
   logo = {
     url: "/",
-    src: "/logo1.png",
+    src: "/text.svg",
     alt: "logo",
     title: "Planova",
   },
@@ -106,8 +106,13 @@ const NavbarClient = ({
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+      // className={cn(
+      //   "sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 dark:bg-transparent border-b border-zinc-200/50 dark:border-white/10 supports-backdrop-filter:bg-white/60 shadow-sm transition-all duration-300",
+      //   className,
+      // )}
+
       className={cn(
-        "sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 dark:bg-transparent border-b border-zinc-200/50 dark:border-white/10 supports-backdrop-filter:bg-white/60 shadow-sm transition-all duration-300",
+        "sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 dark:bg-gray-950 border-b border-zinc-200/50 dark:border-white/10 supports-backdrop-filter:bg-white/60 shadow-sm transition-all duration-300",
         className,
       )}
     >
@@ -117,11 +122,13 @@ const NavbarClient = ({
             <a href={logo.url} className="flex items-center gap-2.5 group">
               <span>
                 {logo.src && (
-                  <Image src={logo.src} width={32} height={32} alt={logo.alt} />
+                  <Image
+                    src={logo.src}
+                    width={140}
+                    height={40}
+                    alt={logo.alt}
+                  />
                 )}
-              </span>
-              <span className="text-3xl font-black tracking-widest bg-clip-text text-teal-600 drop-shadow-sm">
-                Planova
               </span>
             </a>
             <div className="hidden lg:flex items-center">
@@ -137,13 +144,24 @@ const NavbarClient = ({
 
             {isLoggedIn ? (
               <>
-                {userRole === "USER" && (
+                {userRole === Roles.user && (
                   <Button
                     asChild
                     className="rounded-full bg-primary text-primary-foreground hover:bg-teal-700 shadow-sm font-semibold h-10 px-5 transition-all"
                   >
                     <Link href="/providerForm">
                       <span>Create Organizer Account</span>
+                    </Link>
+                  </Button>
+                )}
+
+                {userRole === Roles.organizer && (
+                  <Button
+                    asChild
+                    className="rounded-full bg-primary text-primary-foreground hover:bg-teal-700 shadow-sm font-semibold h-10 px-5 transition-all"
+                  >
+                    <Link href="/organizer-dashboard/create">
+                      <span>Create Events</span>
                     </Link>
                   </Button>
                 )}
@@ -224,11 +242,15 @@ const NavbarClient = ({
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a href={logo.url} className="flex items-center gap-2">
-              <span className="flex aspect-square size-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-primary/60 text-primary-foreground">
-                <Sparkles className="size-4" />
-              </span>
-              <span className="text-xl font-black tracking-widest bg-linear-to-r from-teal-500 to-teal-400 bg-clip-text text-transparent drop-shadow-sm">
-                PLANOVA
+              <span>
+                {logo.src && (
+                  <Image
+                    src={logo.src}
+                    width={100}
+                    height={40}
+                    alt={logo.alt}
+                  />
+                )}
               </span>
             </a>
             <Sheet>
@@ -248,8 +270,15 @@ const NavbarClient = ({
                       href={logo.url}
                       className="flex items-center justify-center gap-2 pb-4"
                     >
-                      <span className="text-4xl font-black tracking-widest bg-linear-to-r from-teal-500 to-teal-400 bg-clip-text text-transparent">
-                        PLANOVA
+                      <span>
+                        {logo.src && (
+                          <Image
+                            src={logo.src}
+                            width={140}
+                            height={40}
+                            alt={logo.alt}
+                          />
+                        )}
                       </span>
                     </a>
                   </SheetTitle>

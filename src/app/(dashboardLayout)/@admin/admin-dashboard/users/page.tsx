@@ -188,7 +188,7 @@ export default function AdminUsersPage() {
 
       <div className="border border-zinc-200 dark:border-zinc-800 rounded-[2.5rem] bg-white/50 dark:bg-gray-950/40 backdrop-blur-3xl shadow-3xl overflow-hidden">
         <Table>
-          <TableHeader className="bg-zinc-100/50 dark:bg-zinc-900/50">
+          <TableHeader className="bg-zinc-100/50 dark:bg-gray-900/70">
             <TableRow className="border-zinc-200 dark:border-zinc-800 hover:bg-transparent">
               <TableHead className="w-300px text-[10px] font-black uppercase tracking-widest py-6 px-8">
                 User Identity
@@ -307,7 +307,7 @@ export default function AdminUsersPage() {
                 Clearance Level
               </label>
               <Select value={newRole} onValueChange={setNewRole}>
-                <SelectTrigger className="h-14 rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 font-bold">
+                <SelectTrigger className="h-14 rounded-2xl bg-zinc-100/50 dark:bg-gray-900/70 border-zinc-200 dark:border-zinc-800 font-bold">
                   <SelectValue placeholder="Access Tier" />
                 </SelectTrigger>
                 <SelectContent className="rounded-2xl border-zinc-200 dark:border-zinc-800 bg-white dark:bg-gray-950">

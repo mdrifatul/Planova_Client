@@ -21,7 +21,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="lg:col-span-1 space-y-6">
-            <Card className="border-none bg-zinc-50 dark:bg-zinc-900/50 shadow-sm p-6">
+            <Card className="border-none bg-zinc-50 dark:bg-gray-900/70 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="bg-teal-100 dark:bg-teal-900/30 p-3 rounded-xl">
                   <Mail className="text-teal-600 dark:text-teal-400 w-6 h-6" />
@@ -34,7 +34,7 @@ export default function ContactPage() {
               </div>
             </Card>
 
-            <Card className="border-none bg-zinc-50 dark:bg-zinc-900/50 shadow-sm p-6">
+            <Card className="border-none bg-zinc-50 dark:bg-gray-900/70 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="bg-teal-100 dark:bg-teal-900/30 p-3 rounded-xl">
                   <Phone className="text-teal-600 dark:text-teal-400 w-6 h-6" />
@@ -47,7 +47,7 @@ export default function ContactPage() {
               </div>
             </Card>
 
-            <Card className="border-none bg-zinc-50 dark:bg-zinc-900/50 shadow-sm p-6">
+            <Card className="border-none bg-zinc-50 dark:bg-gray-900/70 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="bg-teal-100 dark:bg-teal-900/30 p-3 rounded-xl">
                   <MapPin className="text-teal-600 dark:text-teal-400 w-6 h-6" />
@@ -62,27 +62,27 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <Card className="lg:col-span-2 border-none bg-white dark:bg-zinc-900 shadow-xl dark:shadow-teal-900/5 p-8 rounded-3xl">
+          <Card className="lg:col-span-2 border-none bg-white dark:bg-gray-800 shadow-xl dark:shadow-teal-900/5 p-8 rounded-3xl">
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <Label htmlFor="first-name">First Name</Label>
-                  <Input id="first-name" placeholder="John" className="bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
+                  <Input id="first-name" placeholder="John" className="bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="last-name">Last Name</Label>
-                  <Input id="last-name" placeholder="Doe" className="bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
+                  <Input id="last-name" placeholder="Doe" className="bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
                 </div>
               </div>
               
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address</Label>
-                <Input id="email" type="email" placeholder="john@example.com" className="bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
+                <Input id="email" type="email" placeholder="john@example.com" className="bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" placeholder="How can we help?" className="bg-zinc-50 dark:bg-zinc-800/50 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
+                <Input id="subject" placeholder="How can we help?" className="bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-700 h-12 rounded-xl" />
               </div>
 
               <div className="space-y-2">
@@ -91,7 +91,7 @@ export default function ContactPage() {
                   id="message" 
                   rows={6} 
                   placeholder="Tell us more about your inquiry..."
-                  className="w-full bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-sm"
+                  className="w-full bg-zinc-50 dark:bg-gray-800 border border-zinc-200 dark:border-zinc-700 rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-sm"
                 ></textarea>
               </div>
 
@@ -106,3 +106,4 @@ export default function ContactPage() {
     </div>
   );
 }
+

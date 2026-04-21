@@ -25,8 +25,8 @@ export function Banner() {
   };
 
   return (
-    <section className="relative container mx-auto h-dvh flex items-center justify-center overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-500">
-      <div className="relative z-10 w-full flex flex-col items-center justify-center h-full px-2 sm:px-4">
+    <section className="relative h-dvh flex items-center justify-center overflow-hidden bg-white dark:bg-gray-950 transition-colors duration-500">
+      <div className="container mx-auto relative z-10 w-full flex flex-col items-center justify-center h-full px-2 sm:px-4">
         <motion.div
           className="flex flex-col items-center text-center w-full"
           variants={containerVariants}
@@ -59,22 +59,6 @@ export function Banner() {
             </span>
             city.
           </motion.h1>
-
-          {/* Button */}
-          {/* <motion.div
-            variants={itemVariants}
-            className="flex items-center justify-center gap-4"
-          >
-            <Button
-              size="lg"
-              className="h-14 md:h-16 px-8 md:px-10 text-base md:text-lg bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-gray-200 text-white dark:text-slate-900 rounded-full transition-all duration-300 group"
-            >
-              <span className="flex items-center gap-4 font-bold tracking-wide">
-                Get Ticket
-                <span className="w-8 md:w-12 h-0.5 bg-white dark:bg-slate-900 opacity-50 block group-hover:w-16 transition-all duration-300"></span>
-              </span>
-            </Button>
-          </motion.div> */}
         </motion.div>
       </div>
     </section>

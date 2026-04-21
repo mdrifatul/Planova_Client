@@ -140,9 +140,6 @@ export function CommunityFeedback() {
           )}
         </div>
       </div>
-
-      {/* Background patterns */}
-      <div className="absolute top-1/2 left-0 w-full h-px bg-zinc-100 dark:bg-zinc-800 z-0" />
     </section>
   );
 }

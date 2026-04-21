@@ -6,8 +6,6 @@ import {
   ChevronsUpDown,
   CreditCard,
   LogOut,
-  Sparkles,
-  User as UserIcon,
 } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -54,8 +52,12 @@ export function NavUser({
                 </AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user.name || "User"}</span>
-                <span className="truncate text-xs">{user.email || "user@planova.com"}</span>
+                <span className="truncate font-semibold">
+                  {user.name || "User"}
+                </span>
+                <span className="truncate text-xs">
+                  {user.email || "user@planova.com"}
+                </span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -75,18 +77,16 @@ export function NavUser({
                   </AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user.name || "User"}</span>
-                  <span className="truncate text-xs">{user.email || "user@planova.com"}</span>
+                  <span className="truncate font-semibold">
+                    {user.name || "User"}
+                  </span>
+                  <span className="truncate text-xs">
+                    {user.email || "user@planova.com"}
+                  </span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Sparkles className="mr-2 size-4" />
-                Upgrade to Pro
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>

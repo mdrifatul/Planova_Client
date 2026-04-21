@@ -1,7 +1,7 @@
 import { getAllCategoriesAction } from "@/action/category.action";
 import { getAllEventsAction } from "@/action/event.action";
 import { SearchEvents } from "@/components/layout/SearchEvents";
-import { CategoryFilter } from "@/components/modules/events/CategoryFilter";
+import { CategoryFilter } from "@/components/modules/homepage/CategoryFilter";
 import { EventCard } from "@/components/modules/homepage/EventCard";
 
 import {
@@ -159,3 +159,4 @@ export default async function EventsPage({
     </div>
   );
 }
+

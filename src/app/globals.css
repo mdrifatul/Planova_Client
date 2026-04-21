@@ -5,8 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sora: var(--font-sora);
+  --font-inter: var(--font-inter);
 }
 
 @theme inline {
@@ -134,5 +134,12 @@
   /* Prevent scroll jank */
   main {
     display: block;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
   }
 }

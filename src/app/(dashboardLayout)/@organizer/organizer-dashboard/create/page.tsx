@@ -18,10 +18,10 @@ import {
   ArrowLeft,
   Calendar,
   Clock,
+  ImagePlus,
   Loader2,
   MapPin,
   Sparkles,
-  Tag,
   Users,
 } from "lucide-react";
 import Link from "next/link";
@@ -35,7 +35,6 @@ export default function CreateEventPage() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-
   const [formData, setFormData] = useState<CreateEventDto>({
     title: "",
     description: "",
@@ -48,6 +47,7 @@ export default function CreateEventPage() {
     currency: "USD",
     visibility: "PUBLIC",
     categoryId: "",
+    imageUrl: "",
   });
 
   useEffect(() => {
@@ -106,210 +106,348 @@ export default function CreateEventPage() {
   }
 
   return (
-    <div className="p-4 md:p-10 space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-1000 max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div className="space-y-4">
+    <div className="p-6 md:p-12 min-h-screen bg-[#fafafa] dark:bg-gray-950 transition-colors duration-500">
+      <div className="max-w-4xl mx-auto space-y-12">
+        {/* Header Section */}
+        <div className="space-y-6">
           <Button
             asChild
             variant="ghost"
-            className="pl-0 hover:bg-transparent text-zinc-500 hover:text-teal-500 transition-colors group"
+            className="pl-0 group text-zinc-500 hover:text-teal-600 transition-colors"
           >
             <Link
               href="/organizer-dashboard/events"
-              className="flex items-center"
+              className="flex items-center text-sm font-medium"
             >
               <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-              Management Console
+              Back to Dashboard
             </Link>
           </Button>
-          <div className="flex items-center gap-4">
-            <div className="w-2 h-12 bg-teal-500 rounded-full" />
-            <h1 className="text-5xl md:text-6xl font-black tracking-tighter text-zinc-900 dark:text-zinc-100">
-              Initiate Event
+
+          <div className="space-y-2">
+            <h1 className="text-4xl md:text-5xl font-serif font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+              Create New Event
             </h1>
+            <p className="text-zinc-500 dark:text-zinc-400 text-lg">
+              Fill in the details below to launch your next experience.
+            </p>
           </div>
         </div>
-      </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 border border-zinc-200 dark:border-zinc-800 rounded-[3rem] p-8 md:p-12 bg-white/50 dark:bg-gray-950/40 backdrop-blur-3xl shadow-3xl overflow-hidden relative"
-      >
-        <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/5 blur-[100px] -mr-32 -mt-32 rounded-full" />
+        <form onSubmit={handleSubmit} className="space-y-12">
+          {/* Media Section - Senior Implementation */}
+          <div className="bg-white dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 md:p-10 shadow-sm space-y-8">
+            <div className="flex items-center gap-3 pb-4 border-b border-zinc-100 dark:border-zinc-800/50">
+              <div className="p-2 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
+                <ImagePlus className="w-5 h-5 text-indigo-600" />
+              </div>
+              <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+                Media & Branding
+              </h2>
+            </div>
 
-        {/* Title */}
-        <div className="md:col-span-2 space-y-3 relative z-10">
-          <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 px-1">
-            Concept Designation
-          </Label>
-          <Input
-            value={formData.title}
-            onChange={(e) =>
-              setFormData({ ...formData, title: e.target.value })
-            }
-            className="h-16 rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 focus:ring-2 focus:ring-teal-500/20 text-xl font-black placeholder:text-zinc-300 dark:placeholder:text-zinc-700"
-            placeholder="Exclusive Event Title"
-            required
-          />
-        </div>
+            <div className="space-y-6">
+              <div className="relative group">
+                <div className="aspect-21/9 w-full rounded-2xl bg-zinc-100 dark:bg-gray-800 overflow-hidden border-2 border-dashed border-zinc-200 dark:border-zinc-800 flex items-center justify-center transition-all group-hover:border-indigo-500/50">
+                  {formData.imageUrl ? (
+                    <img
+                      src={formData.imageUrl}
+                      alt="Event Banner Preview"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      onError={(e) =>
+                        (e.currentTarget.src =
+                          "https://placehold.co/1200x500?text=Invalid+Image+URL")
+                      }
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center gap-3 text-zinc-400">
+                      <div className="p-4 bg-white dark:bg-gray-800 rounded-full shadow-sm">
+                        <ImagePlus className="w-8 h-8" />
+                      </div>
+                      <p className="text-sm font-medium">
+                        Your event banner will appear here
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
 
-        {/* Date */}
-        <div className="space-y-3 relative z-10">
-          <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 px-1 flex items-center gap-2">
-            <Calendar className="w-3.5 h-3.5 text-teal-600" />
-            Strategic Date
-          </Label>
-          <Input
-            type="date"
-            value={formData.date}
-            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-            className="h-16 rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 font-bold"
-            required
-          />
-        </div>
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Cover Image URL
+                </Label>
+                <div className="relative">
+                  <Input
+                    value={formData.imageUrl}
+                    onChange={(e) =>
+                      setFormData({ ...formData, imageUrl: e.target.value })
+                    }
+                    className="h-12 md:h-14 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800 focus:ring-indigo-500/20 text-base placeholder:text-zinc-400"
+                    placeholder="Enter a direct image link (e.g., Unsplash, Cloudinary)"
+                  />
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold uppercase tracking-widest text-zinc-400 bg-white dark:bg-gray-800 px-2 py-1 rounded border border-zinc-100 dark:border-zinc-700">
+                    JPG/PNG/WEBP
+                  </div>
+                </div>
+                <p className="text-[11px] text-zinc-400">
+                  Pro-tip: Use high-quality landscape images (minimum
+                  1200x500px) for the best look.
+                </p>
+              </div>
+            </div>
+          </div>
 
-        {/* Start Time */}
-        <div className="space-y-3 relative z-10">
-          <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 px-1 flex items-center gap-2">
-            <Clock className="w-3.5 h-3.5 text-teal-600" />
-            Launch Time
-          </Label>
-          <Input
-            type="time"
-            value={formData.startTime}
-            onChange={(e) =>
-              setFormData({ ...formData, startTime: e.target.value })
-            }
-            className="h-16 rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 font-bold"
-            required
-          />
-        </div>
+          {/* Section 1: Basic Information */}
+          <div className="bg-white dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 md:p-10 shadow-sm space-y-8">
+            <div className="flex items-center gap-3 pb-4 border-b border-zinc-100 dark:border-zinc-800/50">
+              <div className="p-2 bg-teal-50 dark:bg-teal-900/20 rounded-lg">
+                <Sparkles className="w-5 h-5 text-teal-600" />
+              </div>
+              <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+                General Information
+              </h2>
+            </div>
 
-        {/* Venue */}
-        <div className="md:col-span-2 space-y-3 relative z-10">
-          <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 px-1 flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5 text-teal-600" />
-            Operational Venue
-          </Label>
-          <Input
-            value={formData.venue}
-            onChange={(e) =>
-              setFormData({ ...formData, venue: e.target.value })
-            }
-            className="h-16 rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 placeholder:text-zinc-300 dark:placeholder:text-zinc-700 font-bold"
-            placeholder="Global HQ / Virtual Auditorium"
-            required
-          />
-        </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="md:col-span-2 space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Event Title
+                </Label>
+                <Input
+                  value={formData.title}
+                  onChange={(e) =>
+                    setFormData({ ...formData, title: e.target.value })
+                  }
+                  className="h-12 md:h-14 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800 focus:ring-teal-500/20 text-lg placeholder:text-zinc-400"
+                  placeholder="e.g. Annual Tech Symposium 2024"
+                  required
+                />
+              </div>
 
-        {/* Capacity */}
-        <div className="space-y-3 relative z-10">
-          <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 px-1 flex items-center gap-2">
-            <Users className="w-3.5 h-3.5 text-teal-600" />
-            Attendee Capacity
-          </Label>
-          <Input
-            type="number"
-            value={formData.maxAttendees}
-            onChange={(e) =>
-              setFormData({
-                ...formData,
-                maxAttendees: parseInt(e.target.value) || 0,
-              })
-            }
-            className="h-16 rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 font-black text-lg"
-            min="1"
-            required
-          />
-        </div>
+              <div className="md:col-span-2 space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Description
+                </Label>
+                <Textarea
+                  value={formData.description}
+                  onChange={(e) =>
+                    setFormData({ ...formData, description: e.target.value })
+                  }
+                  className="min-h-32 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800 p-4 resize-none focus:ring-teal-500/20 text-base leading-relaxed"
+                  placeholder="Share what makes this event special..."
+                  required
+                />
+              </div>
 
-        {/* Category (Optional) */}
-        <div className="space-y-3 relative z-10">
-          <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 px-1 flex items-center gap-2">
-            <Tag className="w-3.5 h-3.5 text-teal-600" />
-            Category{" "}
-            <span className="text-[9px] lowercase opacity-50">(Optional)</span>
-          </Label>
-          <Select
-            value={formData.categoryId || "none"}
-            onValueChange={(val) =>
-              setFormData({
-                ...formData,
-                categoryId: val === "none" ? "" : val,
-              })
-            }
-          >
-            <SelectTrigger className="h-16 rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 font-bold">
-              <SelectValue placeholder="Select Designation" />
-            </SelectTrigger>
-            <SelectContent className="rounded-2xl border-zinc-200 dark:border-zinc-800 bg-white dark:bg-gray-950">
-              <SelectItem
-                value="none"
-                className="rounded-xl py-3 font-bold opacity-50"
-              >
-                None / Uncategorized
-              </SelectItem>
-              {categories.map((cat) => (
-                <SelectItem
-                  key={cat.id}
-                  value={cat.id}
-                  className="rounded-xl py-3 focus:bg-teal-50 dark:focus:bg-teal-900/20 font-bold"
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Category
+                </Label>
+                <Select
+                  value={formData.categoryId || "none"}
+                  onValueChange={(val) =>
+                    setFormData({
+                      ...formData,
+                      categoryId: val === "none" ? "" : val,
+                    })
+                  }
                 >
-                  {cat.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+                  <SelectTrigger className="h-12 md:h-14 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800">
+                    <SelectValue placeholder="Select Category" />
+                  </SelectTrigger>
+                  <SelectContent className="border-zinc-200 dark:border-zinc-800">
+                    <SelectItem value="none">Uncategorized</SelectItem>
+                    {categories.map((cat) => (
+                      <SelectItem key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
 
-        {/* Description */}
-        <div className="md:col-span-2 space-y-3 relative z-10">
-          <Label className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-400 dark:text-zinc-500 px-1">
-            Executive Summary
-          </Label>
-          <Textarea
-            value={formData.description}
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
-            }
-            className="min-h-50 rounded-[2rem] bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 p-8 resize-none focus:ring-2 focus:ring-teal-500/20 text-base leading-relaxed placeholder:text-zinc-300 dark:placeholder:text-zinc-700"
-            placeholder="Describe the mission, objectives and unique value proposition of this experience..."
-            required
-          />
-        </div>
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Visibility
+                </Label>
+                <Select
+                  value={formData.visibility}
+                  onValueChange={(val: any) =>
+                    setFormData({ ...formData, visibility: val })
+                  }
+                >
+                  <SelectTrigger className="h-12 md:h-14 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="PUBLIC">Public</SelectItem>
+                    <SelectItem value="PRIVATE">Private</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
 
-        {/* Action Bar */}
-        <div className="md:col-span-2 pt-8 flex items-center gap-5 relative z-10">
-          <Button
-            type="submit"
-            disabled={submitting}
-            className="flex-1 h-18 rounded-2xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-black uppercase tracking-[0.3em] text-sm shadow-[0_20px_50px_rgba(0,0,0,0.2)] dark:shadow-[0_20px_50px_rgba(255,255,255,0.05)] hover:scale-[1.03] active:scale-[0.98] transition-all"
-          >
-            {submitting ? (
-              <Loader2 className="w-6 h-6 animate-spin text-teal-400" />
-            ) : (
-              <>
-                <Sparkles className="w-5 h-5 mr-3 text-teal-400 animate-pulse" />
-                Initiate Global Event
-              </>
-            )}
-          </Button>
-          <Button
-            asChild
-            type="button"
-            variant="outline"
-            className="h-18 px-10 rounded-2xl border-2 border-zinc-200 dark:border-zinc-800 font-black uppercase tracking-[0.3em] text-xs hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors"
-          >
-            <Link href="/organizer-dashboard/events">Cancel</Link>
-          </Button>
-        </div>
-      </form>
+          {/* Section 2: Logistics & Capacity */}
+          <div className="bg-white dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 md:p-10 shadow-sm space-y-8">
+            <div className="flex items-center gap-3 pb-4 border-b border-zinc-100 dark:border-zinc-800/50">
+              <div className="p-2 bg-teal-50 dark:bg-teal-900/20 rounded-lg">
+                <Calendar className="w-5 h-5 text-teal-600" />
+              </div>
+              <h2 className="text-xl font-semibold text-zinc-800 dark:text-zinc-200">
+                Logistics & Schedule
+              </h2>
+            </div>
 
-      {/* Trust Footer */}
-      <p className="text-center text-[10px] font-black uppercase tracking-[0.5em] text-zinc-300 dark:text-zinc-800">
-        Verified Institutional Product • Secured by Planova
-      </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="md:col-span-2 space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Venue Location
+                </Label>
+                <div className="relative">
+                  <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                  <Input
+                    value={formData.venue}
+                    onChange={(e) =>
+                      setFormData({ ...formData, venue: e.target.value })
+                    }
+                    className="h-12 md:h-14 pl-11 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800"
+                    placeholder="Physical address or virtual link"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Date
+                </Label>
+                <Input
+                  type="date"
+                  value={formData.date}
+                  onChange={(e) =>
+                    setFormData({ ...formData, date: e.target.value })
+                  }
+                  className="h-12 md:h-14 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Start Time
+                </Label>
+                <div className="relative">
+                  <Clock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                  <Input
+                    type="time"
+                    value={formData.startTime}
+                    onChange={(e) =>
+                      setFormData({ ...formData, startTime: e.target.value })
+                    }
+                    className="h-12 md:h-14 pl-11 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  End Time
+                </Label>
+                <div className="relative">
+                  <Clock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                  <Input
+                    type="time"
+                    value={formData.endTime}
+                    onChange={(e) =>
+                      setFormData({ ...formData, endTime: e.target.value })
+                    }
+                    className="h-12 md:h-14 pl-11 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Maximum Attendees
+                </Label>
+                <div className="relative">
+                  <Users className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+                  <Input
+                    type="number"
+                    value={formData.maxAttendees}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        maxAttendees: parseInt(e.target.value),
+                      })
+                    }
+                    className="h-12 md:h-14 pl-11 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800"
+                    min="1"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2.5">
+                <Label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                  Entry Fee (USD)
+                </Label>
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 font-medium">
+                    $
+                  </span>
+                  <Input
+                    type="number"
+                    value={formData.fee}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        fee: parseFloat(e.target.value),
+                      })
+                    }
+                    className="h-12 md:h-14 pl-8 bg-zinc-50 dark:bg-gray-800 border-zinc-200 dark:border-zinc-800"
+                    min="0"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2.5">
+                <div className="pt-7 flex flex-col sm:flex-row justify-end gap-4">
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full sm:w-auto h-13 bg-teal-600 hover:bg-teal-700 text-white font-semibold text-lg shadow-lg shadow-teal-600/20 transition-all hover:scale-[1.01] active:scale-95"
+                  >
+                    {submitting ? (
+                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                    ) : (
+                      "Publish Event"
+                    )}
+                  </Button>
+                  <Button
+                    asChild
+                    type="button"
+                    variant="outline"
+                    className="w-full sm:w-auto h-13 px-10 border-zinc-200 dark:border-zinc-800 font-medium hover:bg-zinc-50 dark:hover:bg-zinc-900"
+                  >
+                    <Link href="/organizer-dashboard/events">Cancel</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <footer className="text-center pt-8">
+          <p className="text-zinc-400 dark:text-zinc-600 text-xs font-medium uppercase tracking-widest">
+            Planova Event Management System
+          </p>
+        </footer>
+      </div>
     </div>
   );
 }

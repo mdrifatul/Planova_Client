@@ -88,7 +88,7 @@ export default function UserEventsPage() {
       </div>
 
       {!participations || participations.length === 0 ? (
-        <div className="border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-[2rem] bg-zinc-50/50 dark:bg-zinc-900/10 py-32 flex flex-col items-center justify-center text-center space-y-8">
+        <div className="border-2 border-dashed border-zinc-200 dark:border-zinc-800 rounded-[2rem] bg-zinc-50/50 dark:bg-gray-900/70 py-32 flex flex-col items-center justify-center text-center space-y-8">
           <div className="p-10 rounded-full bg-linear-to-br from-zinc-100 to-zinc-50 dark:from-zinc-900 dark:to-zinc-950 border border-zinc-200 dark:border-zinc-800 shadow-2xl scale-110">
             <Inbox className="w-16 h-16 text-zinc-400" />
           </div>
@@ -114,7 +114,7 @@ export default function UserEventsPage() {
           {participations.map((part) => (
             <div
               key={part.id}
-              className="group relative flex flex-col lg:flex-row items-stretch lg:items-center gap-6 p-6 md:p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-gray-900/40 backdrop-blur-xl hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/5 transition-all duration-500"
+              className="group relative flex flex-col lg:flex-row items-stretch lg:items-center gap-6 p-6 md:p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-gray-900/70 backdrop-blur-xl hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/5 transition-all duration-500"
             >
               {/* Event Main Section */}
               <div className="flex-1 space-y-4">
@@ -125,7 +125,7 @@ export default function UserEventsPage() {
                   >
                     {part.status}
                   </Badge>
-                  <div className="flex items-center gap-2 text-[10px] font-black text-zinc-400 uppercase tracking-widest bg-zinc-100 dark:bg-zinc-800/80 px-4 py-1.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800/50">
+                  <div className="flex items-center gap-2 text-[10px] font-black text-zinc-400 uppercase tracking-widest bg-zinc-100 dark:bg-gray-800/80 px-4 py-1.5 rounded-lg border border-zinc-200/50 dark:border-zinc-800/50">
                     <Calendar className="w-3 h-3" />
                     Joined {new Date(part.createdAt).toLocaleDateString()}
                   </div>
@@ -155,7 +155,7 @@ export default function UserEventsPage() {
               </div>
 
               {/* Organizer Section */}
-              <div className="lg:w-72 p-4 lg:p-6 rounded-[1.5rem] bg-white/50 dark:bg-zinc-950/40 border border-zinc-100 dark:border-zinc-800/60 shadow-inner">
+              <div className="lg:w-72 p-4 lg:p-6 rounded-[1.5rem] bg-white/50 dark:bg-gray-900/60 border border-zinc-100 dark:border-zinc-800/60 shadow-inner">
                 <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.25em] mb-4 flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full bg-teal-500" />
                   Management
