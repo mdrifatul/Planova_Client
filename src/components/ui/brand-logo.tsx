@@ -5,7 +5,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Sparkles } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export function BrandLogo() {
@@ -16,18 +16,12 @@ export function BrandLogo() {
           size="lg"
           className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
         >
-          <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-linear-to-br from-primary to-primary/60 text-primary-foreground">
-            <Sparkles className="size-4" />
-          </div>
-          <Link
-            href={"/"}
-            className="grid flex-1 text-left text-sm leading-tight"
-          >
-            <span className="truncate font-bold text-lg tracking-tight">
-              Planova
-            </span>
-            <span className="truncate text-[10px] font-medium text-muted-foreground uppercase tracking-[0.15em]">
-              Event Intelligence
+          <Link href={"/"} className="flex-1 pl-3 text-sm leading-tight">
+            {/* <span>
+              <Image src={"/logo1.svg"} width={180} height={40} alt={"Logo"} />
+            </span> */}
+            <span>
+              <Image src={"/text.svg"} width={120} height={40} alt={"Logo"} />
             </span>
           </Link>
         </SidebarMenuButton>

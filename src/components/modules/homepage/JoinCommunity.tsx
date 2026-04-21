@@ -42,7 +42,7 @@ export function JoinCommunity() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto">
               <Link
                 href="/contact"
-                className="w-full sm:w-auto h-16 px-8 rounded-2xl bg-teal-500 hover:bg-teal-400 text-slate-900 font-bold transition-all flex items-center justify-center gap-3 group shrink-0"
+                className="w-full sm:w-auto h-16 px-8 rounded-2xl bg-teal-500 hover:bg-teal-400 text-white font-bold transition-all flex items-center justify-center gap-3 group shrink-0 "
               >
                 Join Now
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />

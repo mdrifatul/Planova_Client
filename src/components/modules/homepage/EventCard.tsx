@@ -1,13 +1,7 @@
 "use client";
 
 import { getAllEventsAction } from "@/action/event.action";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Event } from "@/interfaces";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
@@ -64,7 +58,7 @@ export function EventCard({ event }: EventCardProps) {
         )}
 
         {/* Pricing Tag */}
-        <div className="absolute bottom-3 right-4 px-3 py-1 rounded-full bg-red-500 text-white text-[12px] font-bold tracking-wide z-10 shadow-lg">
+        <div className="absolute bottom-3 right-4 px-3 py-1 rounded-full bg-teal-600 text-white text-[12px] font-bold tracking-wide z-10 shadow-lg">
           {event.fee > 0 ? `$${event.fee} ${event.currency}` : "FREE"}
         </div>
       </div>
@@ -86,11 +80,6 @@ export function EventCard({ event }: EventCardProps) {
         <CardTitle className="text-base font-bold text-slate-800 dark:text-white leading-tight line-clamp-2">
           {event.title}
         </CardTitle>
-        {event.description && (
-          <CardDescription className="text-xs text-slate-400 dark:text-gray-500 font-medium line-clamp-2 mt-2">
-            {event.description}
-          </CardDescription>
-        )}
       </CardHeader>
 
       {/* View Details Link at the Bottom */}

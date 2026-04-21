@@ -158,7 +158,7 @@ export default function AdminCategoriesPage() {
 
       <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-[2.5rem] bg-white/50 dark:bg-gray-950/40 backdrop-blur-3xl shadow-lg sm:shadow-xl md:shadow-3xl overflow-x-auto">
         <Table>
-          <TableHeader className="bg-zinc-100/50 dark:bg-zinc-900/50">
+          <TableHeader className="bg-zinc-100/50 dark:bg-gray-900/70">
             <TableRow className="border-zinc-200 dark:border-zinc-800 hover:bg-transparent">
               <TableHead className="text-[8px] sm:text-[9px] md:text-[10px] font-black uppercase tracking-widest py-3 sm:py-4 md:py-6 px-3 sm:px-4 md:px-8 whitespace-nowrap min-w-max sm:w-auto">
                 Domain Identity
@@ -263,7 +263,7 @@ export default function AdminCategoriesPage() {
                 placeholder="Enter category name..."
                 value={newCategoryName}
                 onChange={(e) => setNewCategoryName(e.target.value)}
-                className="h-10 sm:h-12 md:h-14 w-full rounded-lg sm:rounded-xl md:rounded-2xl bg-zinc-100/50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 font-bold px-3 sm:px-4 md:px-6 focus-visible:ring-2 focus-visible:ring-teal-500/30 text-xs sm:text-sm md:text-base placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+                className="h-10 sm:h-12 md:h-14 w-full rounded-lg sm:rounded-xl md:rounded-2xl bg-zinc-100/50 dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 font-bold px-3 sm:px-4 md:px-6 focus-visible:ring-2 focus-visible:ring-teal-500/30 text-xs sm:text-sm md:text-base placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
               />
             </div>
           </div>

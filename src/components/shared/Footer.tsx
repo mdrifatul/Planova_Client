@@ -13,10 +13,7 @@ const Footer = () => {
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group">
               <span>
-                <Image src={"/logo1.png"} width={32} height={32} alt={"Logo"} />
-              </span>
-              <span className="text-3xl font-black tracking-widest bg-clip-text text-teal-600 drop-shadow-sm">
-                PLANOVA
+                <Image src={"/text.svg"} width={180} height={40} alt={"Logo"} />
               </span>
             </Link>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-xs">

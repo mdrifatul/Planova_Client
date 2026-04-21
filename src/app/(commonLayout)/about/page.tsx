@@ -21,7 +21,7 @@ export default function AboutPage() {
 
         {/* Mission & Vision */}
         <div className="grid md:grid-cols-2 gap-8 mb-24">
-          <Card className="bg-zinc-50 dark:bg-zinc-900/50 border-none shadow-sm h-full flex flex-col justify-center p-8 transition-transform hover:scale-[1.01]">
+          <Card className="bg-zinc-50 dark:bg-gray-900/70 border-none shadow-sm h-full flex flex-col justify-center p-8 transition-transform hover:scale-[1.01]">
             <div className="bg-teal-100 dark:bg-teal-900/30 w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
               <Sparkles className="text-teal-600 dark:text-teal-400" />
             </div>
@@ -30,7 +30,7 @@ export default function AboutPage() {
               To empower communities by providing a seamless platform for event discovery and engagement. We believe every event is an opportunity to learn, grow, and connect.
             </p>
           </Card>
-          <Card className="bg-zinc-50 dark:bg-zinc-900/50 border-none shadow-sm h-full flex flex-col justify-center p-8 transition-transform hover:scale-[1.01]">
+          <Card className="bg-zinc-50 dark:bg-gray-900/70 border-none shadow-sm h-full flex flex-col justify-center p-8 transition-transform hover:scale-[1.01]">
             <div className="bg-teal-100 dark:bg-teal-900/30 w-12 h-12 rounded-2xl flex items-center justify-center mb-6">
               <Globe className="text-teal-600 dark:text-teal-400" />
             </div>
@@ -92,3 +92,4 @@ export default function AboutPage() {
     </div>
   );
 }
+
