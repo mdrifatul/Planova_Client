@@ -13,8 +13,13 @@ export const adminRouter: Route[] = [
     icon: LayoutDashboard,
     items: [
       {
-        title: "Profile",
+        title: "Dashboard",
         url: "/admin-dashboard",
+        icon: LayoutDashboard,
+      },
+      {
+        title: "Profile",
+        url: "/admin-dashboard/profile",
         icon: LayoutDashboard,
       },
       {
