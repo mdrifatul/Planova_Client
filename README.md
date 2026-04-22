@@ -15,6 +15,8 @@ A modern, professional event management platform built with the latest web techn
 - **Event Management**: Create, browse, and manage platform events systematically.
 - **Advanced Dashboard**: Professional and classic user profile sections with secure dashboard routing for diverse user roles.
 - **Robust Authentication**: Powered by Better Auth with fully configured session cookie management and enterprise-grade security.
+- **Secure Financial Transactions**: Integrated Stripe Payment Gateway for seamless ticket purchasing and secure automated invoice generation.
+- **Intelligent AI Assistant**: A built-in AI Chatbot to assist users with event inquiries, personalized recommendations, and instant support.
 - **Smooth Animations & Interactions**: Utilizing Framer Motion and Lenis for an elegant, fluid user experience.
 - **Type-Safe Forms**: Fast and safe form rendering with Tanstack Form and Zod validation adapter.
 - **Elegant Theming**: Out of the box light/dark mode support with `next-themes` and carefully crafted dark-mode compatible sections.
