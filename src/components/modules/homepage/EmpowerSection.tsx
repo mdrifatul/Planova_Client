@@ -35,7 +35,6 @@ export function EmpowerSection() {
     <section className="py-24 bg-zinc-50 dark:bg-gray-950 transition-colors duration-500">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          {/* Text Content */}
           <div className="lg:w-1/2">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -63,7 +62,6 @@ export function EmpowerSection() {
             </motion.div>
           </div>
 
-          {/* Features Grid */}
           <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6">
             {features.map((feature, idx) => (
               <motion.div

@@ -38,7 +38,7 @@ export const userService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: {
@@ -103,7 +103,7 @@ export const userService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         console.error("Update user role failed:", {
           status: res.status,
           statusText: res.statusText,
@@ -149,7 +149,7 @@ export const userService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: {
@@ -211,7 +211,7 @@ export const userService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: { message: errorData?.message || "Failed to delete user" },

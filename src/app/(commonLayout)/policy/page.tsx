@@ -36,7 +36,7 @@ export default function PolicyPage() {
     <div className="min-h-screen bg-transparent dark:bg-gray-950 pt-20 pb-20">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
+          
           <div className="mb-16 border-b border-zinc-200 dark:border-zinc-800 pb-8">
             <h1 className="text-5xl font-black tracking-tight mb-4 text-teal-600">
               Legal & Policies
@@ -46,7 +46,7 @@ export default function PolicyPage() {
             </p>
           </div>
 
-          {/* Quick Links */}
+
           <div className="flex flex-wrap gap-4 mb-16">
             {sections.map((section) => (
               <a 
@@ -59,7 +59,7 @@ export default function PolicyPage() {
             ))}
           </div>
 
-          {/* Content Sections */}
+
           <div className="space-y-20">
             {sections.map((section) => (
               <section key={section.id} id={section.id} className="scroll-mt-32">
@@ -79,7 +79,7 @@ export default function PolicyPage() {
             ))}
           </div>
 
-          {/* Footer Info */}
+
           <div className="mt-20 p-8 rounded-3xl bg-teal-50 dark:bg-teal-900/10 border border-teal-100 dark:border-teal-900/30 text-center">
             <h3 className="font-bold text-xl mb-2">Have questions about our policies?</h3>
             <p className="text-muted-foreground mb-6">Our legal team is happy to help clarify any points.</p>

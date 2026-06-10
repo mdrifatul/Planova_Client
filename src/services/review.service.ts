@@ -8,7 +8,7 @@ import {
 import { cookies } from "next/headers";
 
 export const reviewService = {
-  // Create a new review
+  
   createReview: async function (
     payload: CreateReviewDto,
   ): Promise<ApiResponse<Review>> {
@@ -41,7 +41,7 @@ export const reviewService = {
     }
   },
 
-  // Update review
+  
   updateReview: async function (
     id: string,
     payload: UpdateReviewDto,
@@ -75,7 +75,7 @@ export const reviewService = {
     }
   },
 
-  // Delete review
+  
   deleteReview: async function (
     id: string,
   ): Promise<ApiResponse<{ message: string }>> {
@@ -108,7 +108,7 @@ export const reviewService = {
     }
   },
 
-  // Get all reviews
+  
   getAllReviews: async function (
     limit?: number,
     skip?: number,
@@ -130,7 +130,7 @@ export const reviewService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: {
@@ -143,7 +143,7 @@ export const reviewService = {
       }
 
       const response = await res.json();
-      // API returns { data: [...] } or { data: { data: [...], meta: {...} } }
+      
       const reviews = Array.isArray(response.data?.data)
         ? response.data.data
         : Array.isArray(response.data)
@@ -163,7 +163,7 @@ export const reviewService = {
     }
   },
 
-  // Get reviews by event ID
+  
   getReviewsByEventId: async function (
     eventId: string,
     limit?: number,
@@ -185,7 +185,7 @@ export const reviewService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: {
@@ -198,7 +198,7 @@ export const reviewService = {
       }
 
       const response = await res.json();
-      // API returns { data: [...] } or { data: { data: [...], meta: {...} } }
+      
       const reviews = Array.isArray(response.data?.data)
         ? response.data.data
         : Array.isArray(response.data)
@@ -218,7 +218,7 @@ export const reviewService = {
     }
   },
 
-  // Get review by ID
+  
   getReviewById: async function (id: string): Promise<ApiResponse<Review>> {
     try {
       const cookieStore = await cookies();
@@ -232,7 +232,7 @@ export const reviewService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: {

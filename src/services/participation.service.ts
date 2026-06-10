@@ -7,7 +7,7 @@ import {
 import { cookies } from "next/headers";
 
 export const participationService = {
-  // Join an event
+  
   joinEvent: async function (
     eventId: string,
   ): Promise<ApiResponse<Participation>> {
@@ -39,7 +39,7 @@ export const participationService = {
     }
   },
 
-  // Update participation status
+  
   updateParticipationStatus: async function (
     participationId: string,
     payload: UpdateParticipationStatusDto,
@@ -78,7 +78,7 @@ export const participationService = {
     }
   },
 
-  // Get my participations
+  
   getMyParticipations: async function (): Promise<
     ApiResponse<Participation[]>
   > {
@@ -113,7 +113,7 @@ export const participationService = {
     }
   },
 
-  // Delete participation
+  
   deleteParticipation: async function (
     participationId: string,
   ): Promise<ApiResponse<{ message: string }>> {

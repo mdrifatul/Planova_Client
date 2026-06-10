@@ -36,7 +36,6 @@ export function NavMain({ items }: { items: Route[] }) {
           const Icon = item.icon;
           const hasSubItems = item.items && item.items.length > 0;
 
-          // Parent is active if any of its children are active
           const isParentActive = item.items?.some((subItem) =>
             subItem.url === "/"
               ? pathname === "/"
@@ -117,7 +116,7 @@ export function NavMain({ items }: { items: Route[] }) {
                                   {isSubActive && (
                                     <motion.div
                                       layoutId={`sub-active-${item.title}`}
-                                      className="absolute left-[-17px] w-[2px] h-4 bg-teal-500 dark:bg-teal-400 rounded-full"
+                                      className="absolute -left-4.25 w-0.5 h-4 bg-teal-500 dark:bg-teal-400 rounded-full"
                                     />
                                   )}
                                   {SubIcon && <SubIcon className="size-3.5" />}

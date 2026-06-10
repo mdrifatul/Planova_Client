@@ -8,7 +8,7 @@ import {
 } from "@/interfaces";
 import { invitationService } from "@/services/invitation.service";
 
-// Send invitation
+
 export const sendInvitationAction = async (
   payload: SendInvitationDto,
 ): Promise<ApiResponse<Invitation>> => {
@@ -16,7 +16,7 @@ export const sendInvitationAction = async (
   return res;
 };
 
-// Get received invitations
+
 export const getReceivedInvitationsAction = async (): Promise<
   ApiResponse<Invitation[]>
 > => {
@@ -24,7 +24,7 @@ export const getReceivedInvitationsAction = async (): Promise<
   return res;
 };
 
-// Get sent invitations
+
 export const getSentInvitationsAction = async (): Promise<
   ApiResponse<Invitation[]>
 > => {
@@ -32,7 +32,7 @@ export const getSentInvitationsAction = async (): Promise<
   return res;
 };
 
-// Get event invitations
+
 export const getEventInvitationsAction = async (
   eventId: string,
 ): Promise<ApiResponse<Invitation[]>> => {
@@ -40,7 +40,7 @@ export const getEventInvitationsAction = async (
   return res;
 };
 
-// Get invitation by ID
+
 export const getInvitationByIdAction = async (
   id: string,
 ): Promise<ApiResponse<Invitation>> => {
@@ -48,7 +48,7 @@ export const getInvitationByIdAction = async (
   return res;
 };
 
-// Update invitation
+
 export const updateInvitationAction = async (
   id: string,
   payload: UpdateInvitationDto,
@@ -57,7 +57,7 @@ export const updateInvitationAction = async (
   return res;
 };
 
-// Delete invitation
+
 export const deleteInvitationAction = async (
   id: string,
 ): Promise<ApiResponse<{ message: string }>> => {

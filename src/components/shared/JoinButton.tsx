@@ -34,11 +34,11 @@ export default function JoinButton({
       setLoading(true);
 
       if (fee > 0) {
-        // Paid Event logic:
-        // 1. Try to join the event first (creates un-paid participation record).
+        
+        
         const joinRes = await joinEventAction(eventId);
 
-        // If join fails with a different error than "already joined", stop here.
+        
         if (
           !joinRes.data &&
           joinRes.error?.message !==
@@ -51,7 +51,7 @@ export default function JoinButton({
           return;
         }
 
-        // 2. Initiate Stripe Checkout session for the event.
+        
         const res = await createCheckoutSession(eventId);
         if (res.data && res.data.url) {
           window.location.href = res.data.url;
@@ -59,7 +59,7 @@ export default function JoinButton({
           toast.error(res.error || "Failed to initiate payment");
         }
       } else {
-        // Free Event logic
+        
         const res = await joinEventAction(eventId);
         if (res.data) {
           toast.success("Successfully joined the event!");

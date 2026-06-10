@@ -22,10 +22,10 @@ export default async function EventsPage({
   const currentPage = Number(page) || 1;
   const limit = 12;
 
-  // Fetch categories for the filter
+  
   const { data: categories } = await getAllCategoriesAction();
 
-  // Parse visibility from query if it contains "public" or "private"
+  
   let searchTerm = query;
   let visibility: "PUBLIC" | "PRIVATE" | undefined;
 
@@ -74,7 +74,7 @@ export default async function EventsPage({
   return (
     <div className="bg-zinc-50 dark:bg-gray-950 min-h-screen py-16">
       <div className="container mx-auto px-4">
-        {/* Header Section */}
+        
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
           <div className="text-center lg:text-left">
             <h1 className="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
@@ -88,12 +88,12 @@ export default async function EventsPage({
           <SearchEvents />
         </div>
 
-        {/* Category Filter */}
+
         {categories && categories.length > 0 && (
           <CategoryFilter categories={categories} />
         )}
 
-        {/* Events Grid */}
+        
         {!events || events.length === 0 ? (
           <div className="py-20 text-center">
             <p className="text-zinc-500 text-xl">
@@ -108,7 +108,7 @@ export default async function EventsPage({
               ))}
             </div>
 
-            {/* Pagination */}
+            
             {totalPages > 1 && (
               <div className="flex justify-center mt-12">
                 <Pagination>

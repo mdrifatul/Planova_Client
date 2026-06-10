@@ -3,7 +3,7 @@ import { ApiResponse, Category, CreateCategoryDto } from "@/interfaces";
 import { cookies } from "next/headers";
 
 export const categoryService = {
-  // Create a new category
+  
   createCategory: async function (
     payload: CreateCategoryDto,
   ): Promise<ApiResponse<Category>> {
@@ -20,7 +20,7 @@ export const categoryService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: { message: errorData?.message || "Failed to create category" },
@@ -37,7 +37,7 @@ export const categoryService = {
     }
   },
 
-  // Get all categories
+  
   getAllCategories: async function (): Promise<ApiResponse<Category[]>> {
     try {
       const cookieStore = await cookies();
@@ -49,7 +49,7 @@ export const categoryService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: {
@@ -68,7 +68,7 @@ export const categoryService = {
     }
   },
 
-  // Delete category
+  
   deleteCategory: async function (
     id: string,
   ): Promise<ApiResponse<{ message: string }>> {
@@ -83,7 +83,7 @@ export const categoryService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
+        const errorData = await res.json().catch(() => ());
         return {
           data: null,
           error: { message: errorData?.message || "Failed to delete category" },

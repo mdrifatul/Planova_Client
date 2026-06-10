@@ -78,7 +78,7 @@ export default function OrganizerEventsPage() {
   return (
     <div className="p-6 md:p-12 min-h-screen bg-[#fafafa] dark:bg-gray-950 transition-colors duration-500">
       <div className="max-w-5xl mx-auto space-y-12">
-        {/* Header Section */}
+
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-8 border-b border-zinc-200 dark:border-zinc-800">
           <div className="space-y-4">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-900/20 border border-teal-100 dark:border-teal-800">
@@ -119,7 +119,7 @@ export default function OrganizerEventsPage() {
           </div>
         </div>
 
-        {/* Content Section */}
+
         {!events || events.length === 0 ? (
           <div className="bg-white dark:bg-gray-800 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-20 flex flex-col items-center text-center space-y-6 shadow-sm">
             <div className="p-6 rounded-full bg-zinc-50 dark:bg-gray-800">
@@ -146,7 +146,7 @@ export default function OrganizerEventsPage() {
                 className="group relative bg-white dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-5 md:p-6 shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6">
-                  {/* Event Thumbnail Placeholder or Category Icon */}
+
                   <div className="w-16 h-16 shrink-0 rounded-2xl bg-zinc-50 dark:bg-gray-800 flex items-center justify-center border border-zinc-100 dark:border-zinc-700 group-hover:bg-teal-50 dark:group-hover:bg-teal-900/20 transition-colors overflow-hidden">
                     {event.imageUrl ? (
                       <img
@@ -159,7 +159,7 @@ export default function OrganizerEventsPage() {
                     )}
                   </div>
 
-                  {/* Main Info */}
+
                   <div className="flex-1 min-w-0 space-y-1">
                     <div className="flex items-center gap-3">
                       <Badge
@@ -196,7 +196,7 @@ export default function OrganizerEventsPage() {
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
+
                   <div className="flex items-center gap-2 lg:pl-6">
                     <Button
                       asChild

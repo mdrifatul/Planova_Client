@@ -45,7 +45,7 @@ export default async function EventDetailsPage({
 
   return (
     <div className="bg-zinc-50 dark:bg-gray-950 min-h-screen pb-20">
-      {/* Hero Section */}
+      
       <div className="relative w-full h-[60vh] min-h-100 overflow-hidden">
         <Image
           src={event.imageUrl || "/images/event.jpg"}
@@ -121,7 +121,7 @@ export default async function EventDetailsPage({
 
       <div className="container mx-auto px-4 mt-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Main Info */}
+
           <div className="lg:col-span-2 space-y-12">
             <section>
               <h2 className="text-3xl font-black text-zinc-900 dark:text-white mb-6 tracking-tight">
@@ -132,7 +132,7 @@ export default async function EventDetailsPage({
               </div>
             </section>
 
-            {/* Event Highlights / Tags */}
+
             {event.tags && event.tags.length > 0 && (
               <section>
                 <h3 className="text-xl font-bold text-zinc-900 dark:text-white mb-4 uppercase tracking-widest">
@@ -152,9 +152,9 @@ export default async function EventDetailsPage({
             )}
           </div>
 
-          {/* Sidebar Action Cards */}
+
           <div className="space-y-8">
-            {/* Join Card */}
+
             <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-xl shadow-zinc-200/50 dark:shadow-none border border-zinc-100 dark:border-zinc-800 top-24">
               <div className="flex items-center justify-between mb-8">
                 <div className="flex flex-col">
@@ -194,7 +194,7 @@ export default async function EventDetailsPage({
               </div>
             </div>
 
-            {/* Organizer Card */}
+
             {event.organizer && (
               <div className="bg-zinc-100 dark:bg-gray-900/50 rounded-3xl p-8 border border-zinc-200 dark:border-zinc-800">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6">

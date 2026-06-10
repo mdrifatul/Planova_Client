@@ -8,7 +8,7 @@ import {
 } from "@/interfaces";
 import { reviewService } from "@/services/review.service";
 
-// Create a new review
+
 export const createReviewAction = async (
   payload: CreateReviewDto,
 ): Promise<ApiResponse<Review>> => {
@@ -16,7 +16,7 @@ export const createReviewAction = async (
   return res;
 };
 
-// Get all reviews
+
 export const getAllReviewsAction = async (
   limit?: number,
   skip?: number,
@@ -25,7 +25,7 @@ export const getAllReviewsAction = async (
   return res;
 };
 
-// Get reviews by event ID
+
 export const getReviewsByEventIdAction = async (
   eventId: string,
   limit?: number,
@@ -35,7 +35,7 @@ export const getReviewsByEventIdAction = async (
   return res;
 };
 
-// Get review by ID
+
 export const getReviewByIdAction = async (
   id: string,
 ): Promise<ApiResponse<Review>> => {
@@ -43,7 +43,7 @@ export const getReviewByIdAction = async (
   return res;
 };
 
-// Update review
+
 export const updateReviewAction = async (
   id: string,
   payload: UpdateReviewDto,
@@ -52,7 +52,7 @@ export const updateReviewAction = async (
   return res;
 };
 
-// Delete review
+
 export const deleteReviewAction = async (
   id: string,
 ): Promise<ApiResponse<{ message: string }>> => {

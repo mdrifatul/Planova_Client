@@ -135,7 +135,6 @@ export default function EditEventPage() {
   return (
     <div className="p-6 md:p-12 min-h-screen bg-[#fafafa] dark:bg-gray-950 transition-colors duration-500">
       <div className="max-w-4xl mx-auto space-y-12">
-        {/* Header Section */}
         <div className="space-y-6">
           <Button
             asChild
@@ -162,7 +161,6 @@ export default function EditEventPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-12">
-          {/* Media Section - Senior Implementation */}
           <div className="bg-white dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 md:p-10 shadow-sm space-y-8">
             <div className="flex items-center gap-3 pb-4 border-b border-zinc-100 dark:border-zinc-800/50">
               <div className="p-2 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg">
@@ -234,7 +232,6 @@ export default function EditEventPage() {
             </div>
           </div>
 
-          {/* Section 1: Basic Information */}
           <div className="bg-white dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 md:p-10 shadow-sm space-y-8">
             <div className="flex items-center gap-3 pb-4 border-b border-zinc-100 dark:border-zinc-800/50">
               <div className="p-2 bg-teal-50 dark:bg-teal-900/20 rounded-lg">
@@ -325,7 +322,6 @@ export default function EditEventPage() {
             </div>
           </div>
 
-          {/* Section 2: Logistics & Capacity */}
           <div className="bg-white dark:bg-gray-900/70 border border-zinc-200 dark:border-zinc-800 rounded-3xl p-8 md:p-10 shadow-sm space-y-8">
             <div className="flex items-center gap-3 pb-4 border-b border-zinc-100 dark:border-zinc-800/50">
               <div className="p-2 bg-teal-50 dark:bg-teal-900/20 rounded-lg">
@@ -479,8 +475,6 @@ export default function EditEventPage() {
               </div>
             </div>
           </div>
-
-          {/* Action Bar */}
         </form>
 
         <footer className="text-center pt-8">
