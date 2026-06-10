@@ -1,29 +1,34 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { useState } from "react";
 
 const faqs = [
   {
     question: "How do I register for an event on Planova?",
-    answer: "Registering is easy! Simply browse our events, click on the one you're interested in, and hit the 'Join' or 'Get Ticket' button. If it's a paid event, you'll be guided through our secure Stripe payment process.",
+    answer:
+      "Registering is easy! Simply browse our events, click on the one you're interested in, and hit the 'Join' or 'Get Ticket' button. If it's a paid event, you'll be guided through our secure Stripe payment process.",
   },
   {
     question: "Is my payment information secure?",
-    answer: "Absolutely. We use industry-standard encryption and processed through Stripe, one of the world's most secure payment gateways. Planova never stores your credit card details on our servers.",
+    answer:
+      "Absolutely. We use industry-standard encryption and processed through Stripe, one of the world's most secure payment gateways. Planova never stores your credit card details on our servers.",
   },
   {
     question: "Can I host and manage my own events?",
-    answer: "Yes! Planova is built for creators. Once you create an account, you can access your dashboard to create, manage, and track your events with professional analytics tools.",
+    answer:
+      "Yes! Planova is built for creators. Once you create an account, you can access your dashboard to create, manage, and track your events with professional analytics tools.",
   },
   {
     question: "What is your refund policy for cancelled events?",
-    answer: "If an organizer cancels an event, you will receive a full refund automatically. For personal cancellations, please check the specific refund policy set by the event organizer on the event details page.",
+    answer:
+      "If an organizer cancels an event, you will receive a full refund automatically. For personal cancellations, please check the specific refund policy set by the event organizer on the event details page.",
   },
   {
     question: "How do I access my tickets after booking?",
-    answer: "Once your registration is complete, your ticket will be available in your user dashboard under 'My Participations'. You will also receive a confirmation email with all the event details.",
+    answer:
+      "Once your registration is complete, your ticket will be available in your user dashboard under 'My Participations'. You will also receive a confirmation email with all the event details.",
   },
 ];
 
@@ -34,7 +39,7 @@ export function FAQSection() {
     <section className="py-24 bg-zinc-50 dark:bg-gray-950 transition-colors duration-500">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-16">
-          {/* Header Area */}
+          
           <div className="lg:w-1/3">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -51,17 +56,23 @@ export function FAQSection() {
                 <span className="text-teal-600">Questions</span>
               </h2>
               <p className="text-lg text-slate-600 dark:text-gray-400 mb-8">
-                Got questions? We've got answers. If you can't find what you're looking for, feel free to contact our support team.
+                Got questions? We've got answers. If you can't find what you're
+                looking for, feel free to contact our support team.
               </p>
               <div className="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 shadow-sm">
-                <p className="font-bold dark:text-white mb-2">Still need help?</p>
-                <p className="text-sm text-slate-500 dark:text-gray-400 mb-4">Our team is available 24/7 to assist you with any inquiries.</p>
-                <button className="text-teal-600 font-bold hover:underline transition-all">Contact Support →</button>
+                <p className="font-bold dark:text-white mb-2">
+                  Still need help?
+                </p>
+                <p className="text-sm text-slate-500 dark:text-gray-400 mb-4">
+                  Our team is available 24/7 to assist you with any inquiries.
+                </p>
+                <button className="text-teal-600 font-bold hover:underline transition-all">
+                  Contact Support →
+                </button>
               </div>
             </motion.div>
           </div>
 
-          {/* Accordion Area */}
           <div className="lg:w-2/3 space-y-4">
             {faqs.map((faq, idx) => (
               <motion.div
@@ -80,18 +91,26 @@ export function FAQSection() {
                   onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                   className="w-full flex items-center justify-between p-6 md:p-8 text-left"
                 >
-                  <span className={`text-lg md:text-xl font-bold transition-colors ${
-                    openIndex === idx ? "text-teal-600" : "dark:text-white text-slate-900"
-                  }`}>
+                  <span
+                    className={`text-lg md:text-xl font-bold transition-colors ${
+                      openIndex === idx
+                        ? "text-teal-600"
+                        : "dark:text-white text-slate-900"
+                    }`}
+                  >
                     {faq.question}
                   </span>
-                  <div className={`p-2 rounded-full transition-transform duration-300 ${
-                    openIndex === idx ? "bg-teal-600 text-white rotate-180" : "bg-zinc-100 dark:bg-zinc-800 dark:text-white"
-                  }`}>
+                  <div
+                    className={`p-2 rounded-full transition-transform duration-300 ${
+                      openIndex === idx
+                        ? "bg-teal-600 text-white rotate-180"
+                        : "bg-zinc-100 dark:bg-zinc-800 dark:text-white"
+                    }`}
+                  >
                     <ChevronDown size={20} />
                   </div>
                 </button>
-                
+
                 <AnimatePresence>
                   {openIndex === idx && (
                     <motion.div

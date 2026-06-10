@@ -103,7 +103,6 @@ export function AdminStatsCards({ statsData }: AdminStatsCardsProps) {
                 </h3>
               </div>
 
-              {/* Subtle background decoration */}
               <div className="absolute -right-4 -bottom-4 opacity-5 pointer-events-none group-hover:opacity-10 transition-opacity">
                 {stat.icon}
               </div>

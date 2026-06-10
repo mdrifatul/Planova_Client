@@ -16,7 +16,6 @@ export function EventCard({ event }: EventCardProps) {
   const formatTime = (time?: string) => {
     if (!time) return "";
     try {
-      // Check if it's already formatted
       if (
         time.toLowerCase().includes("am") ||
         time.toLowerCase().includes("pm")
@@ -34,7 +33,6 @@ export function EventCard({ event }: EventCardProps) {
 
   return (
     <Card className="overflow-hidden rounded-lg sm:rounded-xl shadow-2xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-800 transition-colors duration-500 h-full flex flex-col p-0 gap-0">
-      {/* Top Image Section */}
       <div className="relative w-full h-48 shrink-0">
         <Image
           src={event.imageUrl || "/images/event.jpg"}
@@ -42,10 +40,8 @@ export function EventCard({ event }: EventCardProps) {
           fill
           className="object-cover"
         />
-        {/* Bottom Overlay Gradient */}
         <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-gray-900/90 to-transparent pointer-events-none" />
 
-        {/* Location Pin */}
         {event.venue && (
           <div className="absolute bottom-3 left-4 flex items-center text-white gap-1.5 z-10">
             <span className="opacity-90">
@@ -57,15 +53,12 @@ export function EventCard({ event }: EventCardProps) {
           </div>
         )}
 
-        {/* Pricing Tag */}
         <div className="absolute bottom-3 right-4 px-3 py-1 rounded-full bg-teal-600 text-white text-[12px] font-bold tracking-wide z-10 shadow-lg">
           {event.fee > 0 ? `$${event.fee} ${event.currency}` : "FREE"}
         </div>
       </div>
 
-      {/* Card Body Section */}
       <CardHeader className="px-4 pt-4 pb-2 gap-0">
-        {/* Date & Time Line */}
         <div className="flex justify-between gap-0.5 mb-2 text-xs text-slate-500 dark:text-gray-400 font-medium tracking-wide">
           <span>{new Date(event.date).toLocaleDateString()}</span>
           {event.startTime && (
@@ -76,13 +69,11 @@ export function EventCard({ event }: EventCardProps) {
           )}
         </div>
 
-        {/* Title & Description */}
         <CardTitle className="text-base font-bold text-slate-800 dark:text-white leading-tight line-clamp-2">
           {event.title}
         </CardTitle>
       </CardHeader>
 
-      {/* View Details Link at the Bottom */}
       <CardFooter className="px-4 pb-4 pt-2 mt-auto">
         <Link
           href={`/events/${event.id}`}

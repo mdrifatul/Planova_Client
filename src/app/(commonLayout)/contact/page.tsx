@@ -8,7 +8,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-transparent dark:bg-gray-950 pt-20 pb-12">
       <div className="container mx-auto px-4">
-        {/* Header */}
+        
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-black tracking-tight mb-4 text-teal-600">
             Get in Touch
@@ -19,7 +19,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-          {/* Contact Information */}
+
           <div className="lg:col-span-1 space-y-6">
             <Card className="border-none bg-zinc-50 dark:bg-gray-900/70 shadow-sm p-6">
               <div className="flex items-start gap-4">
@@ -61,7 +61,7 @@ export default function ContactPage() {
             </Card>
           </div>
 
-          {/* Contact Form */}
+
           <Card className="lg:col-span-2 border-none bg-white dark:bg-gray-800 shadow-xl dark:shadow-teal-900/5 p-8 rounded-3xl">
             <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">

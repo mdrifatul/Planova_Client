@@ -60,12 +60,10 @@ export function AdminActivityChart() {
                 className="flex-1 flex flex-col items-center gap-3 h-full"
               >
                 <div className="relative w-full flex-1 flex items-end justify-center group">
-                  {/* Tooltip on hover */}
                   <div className="absolute -top-10 bg-zinc-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity z-10 whitespace-nowrap">
                     {data.value} visits
                   </div>
 
-                  {/* Main bar */}
                   <motion.div
                     className="w-full max-w-10 bg-primary rounded-t-lg relative"
                     initial={{ height: 0 }}
@@ -79,7 +77,6 @@ export function AdminActivityChart() {
                     <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-t-lg" />
                   </motion.div>
 
-                  {/* Background bar */}
                   <div className="absolute bottom-0 w-full max-w-10 h-full bg-zinc-100 dark:bg-zinc-800/50 -z-10 rounded-t-lg" />
                 </div>
                 <span className="text-xs font-medium text-muted-foreground uppercase">

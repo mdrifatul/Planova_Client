@@ -131,7 +131,7 @@
     overflow-y: scroll;
     overflow-x: hidden;
   }
-  /* Prevent scroll jank */
+  
   main {
     display: block;
   }

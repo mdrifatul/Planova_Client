@@ -4,10 +4,10 @@ export default function Loading() {
   return (
     <div className="fixed inset-0 z-100 flex flex-col items-center justify-center bg-white/80 dark:bg-gray-950/80 backdrop-blur-md transition-all duration-500">
       <div className="relative">
-        {/* Animated Glow Effect */}
+        
         <div className="absolute inset-0 rounded-full bg-teal-500/20 blur-2xl animate-pulse" />
 
-        {/* Main Spinner */}
+        
         <div className="relative flex flex-col items-center gap-6">
           <div className="relative">
             <Loader2

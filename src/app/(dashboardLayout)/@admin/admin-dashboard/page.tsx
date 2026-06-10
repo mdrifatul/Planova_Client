@@ -24,10 +24,9 @@ export default async function AdminDashboardPage() {
     return null;
   }
 
-  // Calculate some basic stats
   const totalUsers = users?.length || 0;
   const totalEvents = events?.length || 0;
-  // Mocking some stats for visual richness
+
   const activeParticipations = Math.floor(totalEvents * 12.5);
   const totalRevenue = `$${(totalEvents * 1450).toLocaleString()}.00`;
 
@@ -45,17 +44,14 @@ export default async function AdminDashboardPage() {
       <AdminStatsCards statsData={statsData} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Left column: Chart and Recent Users */}
         <div className="lg:col-span-2 space-y-8">
           <AdminActivityChart />
           <AdminRecentEvents events={events || []} />
         </div>
 
-        {/* Right column: Recent Registrations and Quick Stats */}
         <div className="space-y-8">
           <AdminRecentUsers users={users || []} />
 
-          {/* Quick Support / Status Card */}
           <div className="bg-primary/5 dark:bg-primary/10 rounded-2xl p-6 border border-primary/10">
             <h4 className="font-serif font-bold text-primary mb-2">
               System Health

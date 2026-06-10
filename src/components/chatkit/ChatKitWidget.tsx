@@ -23,9 +23,9 @@ export default function ChatKitWidget() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Only scroll if the chat widget is open
+    
     if (isOpen && messagesEndRef.current) {
-      // Use a slight delay to ensure DOM is updated
+      
       const timer = setTimeout(() => {
         messagesEndRef.current?.parentElement?.scrollTo({
           top: messagesEndRef.current?.parentElement?.scrollHeight,
@@ -36,7 +36,7 @@ export default function ChatKitWidget() {
     }
   }, [messages, isOpen]);
 
-  // Detect mobile device
+  
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
@@ -72,7 +72,7 @@ export default function ChatKitWidget() {
       console.log("Response status:", res.status);
       console.log("Response content-type:", res.headers.get("content-type"));
 
-      // Check if response is JSON
+      
       const contentType = res.headers.get("content-type");
       const isJson = contentType?.includes("application/json");
 
@@ -102,7 +102,7 @@ export default function ChatKitWidget() {
           "I couldn't generate a response. Please try again.",
       };
       setMessages((prev) => [...prev, aiMessage]);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      
     } catch (error: any) {
       console.error("Chat error:", error);
       const errorMessage: Message = {
@@ -129,7 +129,7 @@ export default function ChatKitWidget() {
             transition={{ duration: 0.2 }}
             className={`fixed ${isMobile ? "bottom-20 left-2 right-2" : "bottom-24 right-6"} z-50 ${isMobile ? "w-auto" : "w-96"} ${isMobile ? "h-[70vh] max-h-[500px]" : "h-130"} shadow-2xl rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 flex flex-col pointer-events-auto`}
           >
-            {/* Header */}
+            
             <div className="bg-gradient-to-r from-teal-500 to-teal-600 dark:from-teal-600 dark:to-teal-700 p-3 sm:p-4 text-white flex items-center justify-between shadow-md flex-shrink-0">
               <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                 <div className="bg-white/20 p-1.5 sm:p-2 rounded-full flex-shrink-0">

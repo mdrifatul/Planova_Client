@@ -9,7 +9,7 @@ import {
   UpdateEventDto,
 } from "./../interfaces/index";
 
-// Create a new event
+
 export const createEventAction = async (
   payload: CreateEventDto,
 ): Promise<ApiResponse<Event>> => {
@@ -17,7 +17,7 @@ export const createEventAction = async (
   return res;
 };
 
-// Get all events
+
 export const getAllEventsAction = async (
   p0?: any,
   p1?: number,
@@ -46,7 +46,7 @@ export const getAllEventsAction = async (
   return await eventService.getAllEvents(effectiveParams);
 };
 
-// Get my events (organizer only)
+
 export const getMyEventsAction = async (
   limit?: number,
   skip?: number,
@@ -55,7 +55,7 @@ export const getMyEventsAction = async (
   return res;
 };
 
-// Get event by ID
+
 export const getEventByIdAction = async (
   id: string,
 ): Promise<ApiResponse<Event>> => {
@@ -63,7 +63,7 @@ export const getEventByIdAction = async (
   return res;
 };
 
-// Get event participants
+
 export const getEventParticipantsAction = async (
   eventId: string,
   limit?: number,
@@ -73,7 +73,7 @@ export const getEventParticipantsAction = async (
   return res;
 };
 
-// Update event
+
 export const updateEventAction = async (
   id: string,
   payload: UpdateEventDto,
@@ -82,7 +82,7 @@ export const updateEventAction = async (
   return res;
 };
 
-// Delete event
+
 export const deleteEventAction = async (
   id: string,
 ): Promise<ApiResponse<{ message: string }>> => {

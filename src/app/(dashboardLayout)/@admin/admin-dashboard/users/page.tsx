@@ -18,6 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -33,39 +34,36 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { User } from "@/interfaces";
-import {
-  Loader2,
-  Mail,
-  ShieldAlert,
-  ShieldCheck,
-  Trash2,
-  Activity,
-  Lock,
-  Unlock,
-  Users,
-  Shield,
-  Search,
-  Settings2,
-  X,
-} from "lucide-react";
-import { useEffect, useState, useMemo } from "react";
-import { toast } from "sonner";
-import { Input } from "@/components/ui/input";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { User } from "@/interfaces";
+import {
+  Activity,
+  Loader2,
+  Lock,
+  Mail,
+  Search,
+  Settings2,
+  Shield,
+  ShieldCheck,
+  Trash2,
+  Unlock,
+  Users,
+  X,
+} from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  
-  // Unified Manage Dialog State
+
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [manageDialogOpen, setManageDialogOpen] = useState(false);
   const [newRole, setNewRole] = useState<string>("");
@@ -128,22 +126,25 @@ export default function AdminUsersPage() {
     if (!selectedUser) return;
     setSubmitting(true);
     try {
-      // Check if role changed
       if (newRole !== selectedUser.role) {
         const roleRes = await updateUserRoleAction(selectedUser.id, newRole);
         if (roleRes.error) throw new Error(roleRes.error.message);
       }
 
-      // Check if status changed
       if (newStatus !== selectedUser.status) {
-        const statusRes = await updateUserStatusAction(selectedUser.id, newStatus);
+        const statusRes = await updateUserStatusAction(
+          selectedUser.id,
+          newStatus,
+        );
         if (statusRes.error) throw new Error(statusRes.error.message);
       }
 
       toast.success("Personnel configuration updated successfully");
       setUsers(
         users.map((u) =>
-          u.id === selectedUser.id ? { ...u, role: newRole as any, status: newStatus } : u,
+          u.id === selectedUser.id
+            ? { ...u, role: newRole as any, status: newStatus }
+            : u,
         ),
       );
       setManageDialogOpen(false);
@@ -195,7 +196,6 @@ export default function AdminUsersPage() {
     <TooltipProvider>
       <div className="min-h-screen bg-[#fafafa] dark:bg-gray-950 p-6 md:p-12 transition-colors duration-500">
         <div className="max-w-6xl mx-auto space-y-12 animate-in fade-in duration-1000">
-          {/* Header Section */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
@@ -234,7 +234,6 @@ export default function AdminUsersPage() {
             </div>
           </div>
 
-          {/* Search & Actions Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="relative w-full max-w-md group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-zinc-900 dark:group-focus-within:text-zinc-100 transition-colors" />
@@ -254,13 +253,15 @@ export default function AdminUsersPage() {
               )}
             </div>
             <div className="flex items-center gap-3">
-              <Badge variant="outline" className="h-10 px-4 rounded-xl border-zinc-200 bg-white dark:bg-zinc-900 font-serif italic text-zinc-500">
+              <Badge
+                variant="outline"
+                className="h-10 px-4 rounded-xl border-zinc-200 bg-white dark:bg-zinc-900 font-serif italic text-zinc-500"
+              >
                 {filteredUsers.length} Results Found
               </Badge>
             </div>
           </div>
 
-          {/* Table Section */}
           <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
             <Table>
               <TableHeader className="bg-zinc-50/50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800">
@@ -341,7 +342,9 @@ export default function AdminUsersPage() {
                               </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="font-serif italic text-xs">Configure Account</p>
+                              <p className="font-serif italic text-xs">
+                                Configure Account
+                              </p>
                             </TooltipContent>
                           </Tooltip>
 
@@ -358,7 +361,9 @@ export default function AdminUsersPage() {
                               </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="font-serif italic text-xs">Terminate Access</p>
+                              <p className="font-serif italic text-xs">
+                                Terminate Access
+                              </p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
@@ -370,7 +375,9 @@ export default function AdminUsersPage() {
                     <TableCell colSpan={4} className="py-24 text-center">
                       <div className="flex flex-col items-center gap-3 opacity-20">
                         <Users className="w-12 h-12 text-zinc-400" />
-                        <p className="text-sm font-serif italic">No matching records identified.</p>
+                        <p className="text-sm font-serif italic">
+                          No matching records identified.
+                        </p>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -379,18 +386,22 @@ export default function AdminUsersPage() {
             </Table>
           </div>
 
-          {/* Personnel Configuration Dialog */}
           <Dialog open={manageDialogOpen} onOpenChange={setManageDialogOpen}>
             <DialogContent className="sm:max-w-md border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl p-8 shadow-2xl">
               <DialogHeader className="gap-2">
-                <DialogTitle className="text-2xl font-serif font-medium">Account Configuration</DialogTitle>
+                <DialogTitle className="text-2xl font-serif font-medium">
+                  Account Configuration
+                </DialogTitle>
                 <DialogDescription className="text-zinc-500 font-light">
-                  Adjust clearance and status for <span className="font-medium text-zinc-900 dark:text-zinc-100 italic">{selectedUser?.name}</span>.
+                  Adjust clearance and status for{" "}
+                  <span className="font-medium text-zinc-900 dark:text-zinc-100 italic">
+                    {selectedUser?.name}
+                  </span>
+                  .
                 </DialogDescription>
               </DialogHeader>
 
               <div className="py-8 space-y-8">
-                {/* Role Section */}
                 <div className="space-y-3">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2">
                     <Shield className="w-3 h-3" /> Clearance Tier
@@ -400,15 +411,25 @@ export default function AdminUsersPage() {
                       <SelectValue placeholder="Access Tier" />
                     </SelectTrigger>
                     <SelectContent className="rounded-xl border-zinc-200 dark:border-zinc-800">
-                      <SelectItem value="USER" className="rounded-lg">User Access</SelectItem>
-                      <SelectItem value="ORGANIZER" className="rounded-lg">Organizer Access</SelectItem>
-                      <SelectItem value="MODERATOR" className="rounded-lg">Moderator Access</SelectItem>
-                      <SelectItem value="ADMIN" className="rounded-lg font-medium text-rose-600">Root Administrator</SelectItem>
+                      <SelectItem value="USER" className="rounded-lg">
+                        User Access
+                      </SelectItem>
+                      <SelectItem value="ORGANIZER" className="rounded-lg">
+                        Organizer Access
+                      </SelectItem>
+                      <SelectItem value="MODERATOR" className="rounded-lg">
+                        Moderator Access
+                      </SelectItem>
+                      <SelectItem
+                        value="ADMIN"
+                        className="rounded-lg font-medium text-rose-600"
+                      >
+                        Root Administrator
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
-                {/* Status Section */}
                 <div className="space-y-3">
                   <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 flex items-center gap-2">
                     <Activity className="w-3 h-3" /> Operational State
@@ -448,7 +469,11 @@ export default function AdminUsersPage() {
                   disabled={submitting}
                   className="h-12 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-medium px-8"
                 >
-                  {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : "Authorize Changes"}
+                  {submitting ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    "Authorize Changes"
+                  )}
                 </Button>
               </DialogFooter>
             </DialogContent>

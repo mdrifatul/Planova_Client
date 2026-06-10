@@ -9,7 +9,7 @@ import {
 import { cookies } from "next/headers";
 
 export const eventService = {
-  // Create a new event
+  
   createEvent: async function (
     payload: CreateEventDto,
   ): Promise<ApiResponse<Event>> {
@@ -42,7 +42,7 @@ export const eventService = {
     }
   },
 
-  // Get all events (public)
+  
   getAllEvents: async function (params?: {
     limit?: number;
     skip?: number;
@@ -82,7 +82,7 @@ export const eventService = {
         "sortOrder",
         "include",
       ]);
-      for (const [key, value] of Object.entries(params ?? {})) {
+      for (const [key, value] of Object.entries(params ?? )) {
         if (!reserved.has(key) && value !== undefined && value !== null) {
           queryParams.append(key, String(value));
         }
@@ -121,7 +121,7 @@ export const eventService = {
     }
   },
 
-  // Get my events (organizer)
+  
   getMyEvents: async function (
     limit?: number,
     skip?: number,
@@ -163,7 +163,7 @@ export const eventService = {
     }
   },
 
-  // Get event by ID
+  
   getEventById: async function (id: string): Promise<ApiResponse<Event>> {
     try {
       const res = await fetch(`${env.API_URL}/events/${id}`, {
@@ -187,7 +187,7 @@ export const eventService = {
     }
   },
 
-  // Get event participants
+  
   getEventParticipants: async function (
     eventId: string,
     limit?: number,
@@ -230,7 +230,7 @@ export const eventService = {
     }
   },
 
-  // Update event
+  
   updateEvent: async function (
     id: string,
     payload: UpdateEventDto,
@@ -264,7 +264,7 @@ export const eventService = {
     }
   },
 
-  // Delete event
+  
   deleteEvent: async function (
     id: string,
   ): Promise<ApiResponse<{ message: string }>> {

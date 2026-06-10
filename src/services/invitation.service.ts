@@ -8,7 +8,7 @@ import {
 import { cookies } from "next/headers";
 
 export const invitationService = {
-  // Send invitation
+  
   sendInvitation: async function (
     payload: SendInvitationDto,
   ): Promise<ApiResponse<Invitation>> {
@@ -41,7 +41,7 @@ export const invitationService = {
     }
   },
 
-  // Get received invitations
+  
   getReceivedInvitations: async function (): Promise<
     ApiResponse<Invitation[]>
   > {
@@ -73,7 +73,7 @@ export const invitationService = {
     }
   },
 
-  // Get sent invitations
+  
   getSentInvitations: async function (): Promise<ApiResponse<Invitation[]>> {
     try {
       const cookieStore = await cookies();
@@ -103,7 +103,7 @@ export const invitationService = {
     }
   },
 
-  // Get event invitations
+  
   getEventInvitations: async function (
     eventId: string,
   ): Promise<ApiResponse<Invitation[]>> {
@@ -135,7 +135,7 @@ export const invitationService = {
     }
   },
 
-  // Get invitation by ID
+  
   getInvitationById: async function (
     id: string,
   ): Promise<ApiResponse<Invitation>> {
@@ -167,7 +167,7 @@ export const invitationService = {
     }
   },
 
-  // Update invitation
+  
   updateInvitation: async function (
     id: string,
     payload: UpdateInvitationDto,
@@ -201,7 +201,7 @@ export const invitationService = {
     }
   },
 
-  // Delete invitation
+  
   deleteInvitation: async function (
     id: string,
   ): Promise<ApiResponse<{ message: string }>> {

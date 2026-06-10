@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-zinc-50 dark:bg-gray-950 border-t border-zinc-200 dark:border-zinc-800/50 pt-16 pb-8">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand Column */}
+          
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-2 group">
               <span>
@@ -21,23 +21,7 @@ const Footer = () => {
               unforgettable moments. Join the community of elite event
               organizers.
             </p>
-            {/* <div className="flex items-center gap-4">
-              {[
-                { icon: Facebook, href: "#" },
-                { icon: Twitter, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Github, href: "#" },
-              ].map((social, idx) => (
-                <Link
-                  key={idx}
-                  href={social.href}
-                  className="w-10 h-10 rounded-full bg-zinc-100 dark:bg-zinc-900 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:bg-teal-600 hover:text-white dark:hover:bg-teal-600 dark:hover:text-white transition-all duration-300"
-                >
-                  <social.icon size={18} />
-                </Link>
-              ))}
-            </div> */}
+            
           </div>
 
           {/* Quick Links */}
@@ -66,7 +50,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Support Links */}
+          
           <div className="flex flex-col gap-6">
             <h3 className="text-lg font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
               Support

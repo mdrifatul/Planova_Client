@@ -60,7 +60,7 @@ export function OrganizerForm({ ...props }: React.ComponentProps<typeof Card>) {
 
       const toastId = toast.loading("Updating organizer profile...");
       try {
-        // Update user profile
+        
         const profileResponse = await updateUserProfileAction(user.id, {
           name: value.name,
           phone: value.phone || undefined,
@@ -73,7 +73,7 @@ export function OrganizerForm({ ...props }: React.ComponentProps<typeof Card>) {
           return;
         }
 
-        // Update user role to ORGANIZER
+        
         const roleResponse = await updateUserRoleAction(
           user.id,
           Roles.organizer,

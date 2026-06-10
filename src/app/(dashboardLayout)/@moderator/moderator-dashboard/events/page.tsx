@@ -72,12 +72,12 @@ export default function ModeratorEventsPage() {
   const filteredEvents = useMemo(() => {
     let results = events;
 
-    // Filter by Category
+    
     if (selectedCategoryId !== "all") {
       results = results.filter((e) => e.categoryId === selectedCategoryId);
     }
 
-    // Filter by Search Term
+    
     if (searchTerm) {
       const lowerSearch = searchTerm.toLowerCase();
       results = results.filter(
@@ -130,7 +130,7 @@ export default function ModeratorEventsPage() {
     <TooltipProvider>
       <div className="min-h-screen bg-[#fafafa] dark:bg-gray-950 p-6 md:p-12 transition-colors duration-500">
         <div className="max-w-6xl mx-auto space-y-10 animate-in fade-in duration-1000">
-          {/* Header Section */}
+
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
@@ -170,7 +170,7 @@ export default function ModeratorEventsPage() {
             </div>
           </div>
 
-          {/* Search Bar - Refined Design */}
+          
           <div className="relative w-full max-w-3xl group">
             <div className="relative">
               <Input
@@ -194,7 +194,7 @@ export default function ModeratorEventsPage() {
             </div>
           </div>
 
-          {/* Category Filter */}
+
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
               <Layers className="w-3 h-3" /> Filter by Category
@@ -226,7 +226,7 @@ export default function ModeratorEventsPage() {
             </div>
           </div>
 
-          {/* Table Section */}
+
           <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
             <Table>
               <TableHeader className="bg-zinc-50/50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800">
@@ -256,7 +256,7 @@ export default function ModeratorEventsPage() {
                         <div className="flex items-center gap-5">
                           <div className="relative h-14 w-14 shrink-0 rounded-xl bg-zinc-100 dark:bg-zinc-800 overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm">
                             {event.imageUrl ? (
-                              // eslint-disable-next-line @next/next/no-img-element
+                              
                               <img
                                 src={event.imageUrl}
                                 alt={event.title}
@@ -376,7 +376,7 @@ export default function ModeratorEventsPage() {
             </Table>
           </div>
 
-          {/* Footer hint */}
+
           <div className="flex items-center justify-center gap-2 text-zinc-400 text-[10px] font-bold uppercase tracking-widest opacity-40 py-8">
             <ShieldCheck className="w-3 h-3" />
             Global event stream is monitored and verified by the administrative

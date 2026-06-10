@@ -5,6 +5,7 @@ import { deleteEventAction, getAllEventsAction } from "@/action/event.action";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Table,
   TableBody,
@@ -13,6 +14,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Category, Event } from "@/interfaces";
 import {
   Calendar,
@@ -20,6 +27,7 @@ import {
   ExternalLink,
   Globe,
   Inbox,
+  Layers,
   Loader2,
   Lock,
   MapPin,
@@ -28,18 +36,10 @@ import {
   Trash2,
   Users,
   X,
-  Layers,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Input } from "@/components/ui/input";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 export default function AdminEventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -73,12 +73,10 @@ export default function AdminEventsPage() {
   const filteredEvents = useMemo(() => {
     let results = events;
 
-    // Filter by Category
     if (selectedCategoryId !== "all") {
       results = results.filter((e) => e.categoryId === selectedCategoryId);
     }
 
-    // Filter by Search Term
     if (searchTerm) {
       const lowerSearch = searchTerm.toLowerCase();
       results = results.filter(
@@ -86,7 +84,7 @@ export default function AdminEventsPage() {
           event.title.toLowerCase().includes(lowerSearch) ||
           event.organizer?.name?.toLowerCase().includes(lowerSearch) ||
           event.venue?.toLowerCase().includes(lowerSearch) ||
-          event.category?.name?.toLowerCase().includes(lowerSearch)
+          event.category?.name?.toLowerCase().includes(lowerSearch),
       );
     }
 
@@ -131,7 +129,7 @@ export default function AdminEventsPage() {
     <TooltipProvider>
       <div className="min-h-screen bg-[#fafafa] dark:bg-gray-950 p-6 md:p-12 transition-colors duration-500">
         <div className="max-w-6xl mx-auto space-y-10 animate-in fade-in duration-1000">
-          {/* Header Section */}
+
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
@@ -170,7 +168,6 @@ export default function AdminEventsPage() {
             </div>
           </div>
 
-          {/* Search Bar - Refined Design */}
           <div className="relative w-full max-w-3xl group">
             <div className="relative">
               <Input
@@ -194,7 +191,7 @@ export default function AdminEventsPage() {
             </div>
           </div>
 
-          {/* Category Filter - Like Event Page */}
+
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">
               <Layers className="w-3 h-3" /> Filter by Category
@@ -226,7 +223,6 @@ export default function AdminEventsPage() {
             </div>
           </div>
 
-          {/* Table Section */}
           <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
             <Table>
               <TableHeader className="bg-zinc-50/50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800">
@@ -256,7 +252,6 @@ export default function AdminEventsPage() {
                         <div className="flex items-center gap-5">
                           <div className="relative h-14 w-14 shrink-0 rounded-xl bg-zinc-100 dark:bg-zinc-800 overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm">
                             {event.imageUrl ? (
-                              // eslint-disable-next-line @next/next/no-img-element
                               <img
                                 src={event.imageUrl}
                                 alt={event.title}
@@ -273,7 +268,10 @@ export default function AdminEventsPage() {
                               <span className="font-medium text-zinc-900 dark:text-zinc-100 text-lg tracking-tight truncate leading-tight">
                                 {event.title}
                               </span>
-                              <Badge variant="secondary" className="text-[9px] px-1.5 py-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-none">
+                              <Badge
+                                variant="secondary"
+                                className="text-[9px] px-1.5 py-0 bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border-none"
+                              >
                                 {event.category?.name}
                               </Badge>
                             </div>
@@ -295,7 +293,9 @@ export default function AdminEventsPage() {
                           <Avatar className="h-9 w-9 rounded-full border border-zinc-200 dark:border-zinc-700">
                             <AvatarImage src={event.organizer?.image} />
                             <AvatarFallback className="bg-zinc-50 dark:bg-zinc-800 text-zinc-400 text-[10px] font-serif italic">
-                              {event.organizer?.name?.substring(0, 2).toUpperCase()}
+                              {event.organizer?.name
+                                ?.substring(0, 2)
+                                .toUpperCase()}
                             </AvatarFallback>
                           </Avatar>
                           <div className="flex flex-col min-w-0">
@@ -337,13 +337,18 @@ export default function AdminEventsPage() {
                                 size="icon"
                                 className="h-9 w-9 rounded-xl border-zinc-200 text-zinc-500 hover:text-teal-600 hover:border-teal-200 transition-all"
                               >
-                                <Link href={`/events/${event.id}`} target="_blank">
+                                <Link
+                                  href={`/events/${event.id}`}
+                                  target="_blank"
+                                >
                                   <ExternalLink className="w-4 h-4" />
                                 </Link>
                               </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="font-serif italic text-xs">Public Inspection</p>
+                              <p className="font-serif italic text-xs">
+                                Public Inspection
+                              </p>
                             </TooltipContent>
                           </Tooltip>
 
@@ -359,7 +364,9 @@ export default function AdminEventsPage() {
                               </Button>
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="font-serif italic text-xs">Terminate Event</p>
+                              <p className="font-serif italic text-xs">
+                                Terminate Event
+                              </p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
@@ -371,7 +378,9 @@ export default function AdminEventsPage() {
                     <TableCell colSpan={4} className="py-24 text-center">
                       <div className="flex flex-col items-center gap-3 opacity-20">
                         <Inbox className="w-12 h-12 text-zinc-400" />
-                        <p className="text-sm font-serif italic">No orchestrations identified in the stream.</p>
+                        <p className="text-sm font-serif italic">
+                          No orchestrations identified in the stream.
+                        </p>
                       </div>
                     </TableCell>
                   </TableRow>
@@ -380,10 +389,10 @@ export default function AdminEventsPage() {
             </Table>
           </div>
 
-          {/* Footer hint */}
           <div className="flex items-center justify-center gap-2 text-zinc-400 text-[10px] font-bold uppercase tracking-widest opacity-40 py-8">
             <ShieldCheck className="w-3 h-3" />
-            Global event stream is monitored and verified by the administrative core.
+            Global event stream is monitored and verified by the administrative
+            core.
           </div>
         </div>
       </div>

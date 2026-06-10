@@ -116,7 +116,7 @@ export default function UserEventsPage() {
               key={part.id}
               className="group relative flex flex-col lg:flex-row items-stretch lg:items-center gap-6 p-6 md:p-8 rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-gray-900/70 backdrop-blur-xl hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/5 transition-all duration-500"
             >
-              {/* Event Main Section */}
+
               <div className="flex-1 space-y-4">
                 <div className="flex flex-wrap items-center gap-3">
                   <Badge
@@ -154,7 +154,7 @@ export default function UserEventsPage() {
                 </div>
               </div>
 
-              {/* Organizer Section */}
+
               <div className="lg:w-72 p-4 lg:p-6 rounded-[1.5rem] bg-white/50 dark:bg-gray-900/60 border border-zinc-100 dark:border-zinc-800/60 shadow-inner">
                 <p className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.25em] mb-4 flex items-center gap-2">
                   <div className="w-1 h-1 rounded-full bg-teal-500" />
@@ -179,7 +179,7 @@ export default function UserEventsPage() {
                 </div>
               </div>
 
-              {/* Actions Section */}
+
               <div className="flex lg:flex-col items-stretch gap-3 lg:w-48">
                 <Button
                   asChild
@@ -200,7 +200,7 @@ export default function UserEventsPage() {
                 />
               </div>
 
-              {/* Decorative Accent */}
+
               <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-1/2 rounded-r-full bg-teal-500 scale-y-0 group-hover:scale-y-100 transition-transform duration-500" />
             </div>
           ))}

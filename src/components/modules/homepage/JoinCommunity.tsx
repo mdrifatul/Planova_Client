@@ -14,7 +14,7 @@ export function JoinCommunity() {
           viewport={{ once: true }}
           className="relative rounded-[3rem] bg-slate-900 dark:bg-zinc-900 px-8 py-16 md:py-24 text-center overflow-hidden border border-slate-800 dark:border-zinc-800"
         >
-          {/* Decorative shapes */}
+          
           <div className="absolute top-0 right-0 -translate-y-12 translate-x-12 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 translate-y-12 -translate-x-12 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 

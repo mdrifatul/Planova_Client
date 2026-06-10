@@ -3,7 +3,7 @@
 import { ApiResponse, Category, CreateCategoryDto } from "@/interfaces";
 import { categoryService } from "@/services/category.service";
 
-// Create a new category
+
 export const createCategoryAction = async (
   payload: CreateCategoryDto,
 ): Promise<ApiResponse<Category>> => {
@@ -11,7 +11,7 @@ export const createCategoryAction = async (
   return res;
 };
 
-// Get all categories
+
 export const getAllCategoriesAction = async (): Promise<
   ApiResponse<Category[]>
 > => {
@@ -19,7 +19,7 @@ export const getAllCategoriesAction = async (): Promise<
   return res;
 };
 
-// Delete category
+
 export const deleteCategoryAction = async (
   id: string,
 ): Promise<ApiResponse<{ message: string }>> => {

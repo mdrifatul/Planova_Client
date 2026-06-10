@@ -106,11 +106,6 @@ const NavbarClient = ({
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
-      // className={cn(
-      //   "sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 dark:bg-transparent border-b border-zinc-200/50 dark:border-white/10 supports-backdrop-filter:bg-white/60 shadow-sm transition-all duration-300",
-      //   className,
-      // )}
-
       className={cn(
         "sticky top-0 z-50 w-full backdrop-blur-xl bg-white/80 dark:bg-gray-950 border-b border-zinc-200/50 dark:border-white/10 supports-backdrop-filter:bg-white/60 shadow-sm transition-all duration-300",
         className,

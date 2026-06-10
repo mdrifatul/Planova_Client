@@ -1,4 +1,4 @@
-// API Response Interface
+
 export interface ApiResponse<T> {
   data: T | null;
   meta?: {
@@ -11,7 +11,7 @@ export interface ApiResponse<T> {
   } | null;
 }
 
-// Category Interfaces
+
 export interface CreateCategoryDto {
   name: string;
   description?: string;
@@ -26,7 +26,7 @@ export interface Category {
   updatedAt: string;
 }
 
-// Event Interfaces
+
 export interface CreateEventDto {
   title: string;
   description?: string;
@@ -101,7 +101,7 @@ export interface EventParticipant {
   joinedAt: string;
 }
 
-// Review Interfaces
+
 export interface CreateReviewDto {
   rating: number;
   comment?: string;
@@ -132,7 +132,7 @@ export interface Review {
   };
 }
 
-// Participation Interfaces
+
 export interface JoinEventDto {
   eventId: string;
 }
@@ -163,7 +163,7 @@ export interface Participation {
   };
 }
 
-// Invitation Interfaces
+
 export interface SendInvitationDto {
   receiverId: string;
   eventId: string;
@@ -197,7 +197,7 @@ export interface Invitation {
   };
 }
 
-// User Interfaces
+
 export interface UpdateUserStatusDto {
   status?: string;
 }

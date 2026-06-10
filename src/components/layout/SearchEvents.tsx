@@ -17,7 +17,7 @@ export function SearchEvents() {
     } else {
       params.delete("query");
     }
-    // Reset to page 1 on new search
+    
     params.set("page", "1");
 
     router.push(`/events?${params.toString()}`);

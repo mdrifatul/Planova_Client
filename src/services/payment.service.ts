@@ -47,7 +47,7 @@ export const paymentService = {
       }
 
       return { data: data.data, error: null };
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      
     } catch (error) {
       return { data: null, error: "Something went wrong" };
     }

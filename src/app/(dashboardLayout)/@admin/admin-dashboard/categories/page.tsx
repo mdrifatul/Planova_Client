@@ -139,7 +139,6 @@ export default function AdminCategoriesPage() {
     <TooltipProvider>
       <div className="min-h-screen bg-[#fafafa] dark:bg-gray-950 p-6 md:p-12 transition-colors duration-500">
         <div className="max-w-5xl mx-auto space-y-12 animate-in fade-in duration-1000">
-          {/* Header Section */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm">
@@ -177,7 +176,6 @@ export default function AdminCategoriesPage() {
             </div>
           </div>
 
-          {/* Search Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="relative w-full max-w-md group">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 group-focus-within:text-zinc-900 dark:group-focus-within:text-zinc-100 transition-colors" />
@@ -204,7 +202,6 @@ export default function AdminCategoriesPage() {
             </Badge>
           </div>
 
-          {/* Table Section */}
           <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
             <Table>
               <TableHeader className="bg-zinc-50/50 dark:bg-zinc-900/50 border-b border-zinc-200 dark:border-zinc-800">
@@ -296,7 +293,6 @@ export default function AdminCategoriesPage() {
             </Table>
           </div>
 
-          {/* Category Creation Dialog */}
           <Dialog open={createDialogOpen} onOpenChange={setCreateDialogOpen}>
             <DialogContent className="sm:max-w-md border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 rounded-2xl p-8 shadow-2xl">
               <DialogHeader className="gap-2">
@@ -347,7 +343,6 @@ export default function AdminCategoriesPage() {
             </DialogContent>
           </Dialog>
 
-          {/* Footer hint */}
           <div className="flex items-center justify-center gap-2 text-zinc-400 text-[10px] font-bold uppercase tracking-widest opacity-40 py-8">
             <ShieldCheck className="w-3 h-3" />
             Classification structure governed by administrative core

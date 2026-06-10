@@ -85,7 +85,7 @@ export function UserProfileView({ user }: { user: User }) {
 
   return (
     <div className="w-full max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500">
-      {/* Profile Header Card */}
+      
       <Card className="overflow-hidden border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-gray-900 shadow-2xl">
         <CardContent className="relative px-6 pb-8 flex flex-col md:flex-row items-end gap-6 pt-10">
           <div className="relative group">
