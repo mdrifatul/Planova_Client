@@ -82,7 +82,7 @@ export const eventService = {
         "sortOrder",
         "include",
       ]);
-      for (const [key, value] of Object.entries(params ?? )) {
+      for (const [key, value] of Object.entries(params ?? {})) {
         if (!reserved.has(key) && value !== undefined && value !== null) {
           queryParams.append(key, String(value));
         }
