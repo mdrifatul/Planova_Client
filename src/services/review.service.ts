@@ -8,7 +8,6 @@ import {
 import { cookies } from "next/headers";
 
 export const reviewService = {
-  
   createReview: async function (
     payload: CreateReviewDto,
   ): Promise<ApiResponse<Review>> {
@@ -41,7 +40,6 @@ export const reviewService = {
     }
   },
 
-  
   updateReview: async function (
     id: string,
     payload: UpdateReviewDto,
@@ -75,7 +73,6 @@ export const reviewService = {
     }
   },
 
-  
   deleteReview: async function (
     id: string,
   ): Promise<ApiResponse<{ message: string }>> {
@@ -108,7 +105,6 @@ export const reviewService = {
     }
   },
 
-  
   getAllReviews: async function (
     limit?: number,
     skip?: number,
@@ -130,7 +126,7 @@ export const reviewService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ());
+        const errorData = await res.json().catch(() => null);
         return {
           data: null,
           error: {
@@ -143,7 +139,7 @@ export const reviewService = {
       }
 
       const response = await res.json();
-      
+
       const reviews = Array.isArray(response.data?.data)
         ? response.data.data
         : Array.isArray(response.data)
@@ -163,7 +159,6 @@ export const reviewService = {
     }
   },
 
-  
   getReviewsByEventId: async function (
     eventId: string,
     limit?: number,
@@ -185,7 +180,7 @@ export const reviewService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ());
+        const errorData = await res.json().catch(() => null);
         return {
           data: null,
           error: {
@@ -198,7 +193,7 @@ export const reviewService = {
       }
 
       const response = await res.json();
-      
+
       const reviews = Array.isArray(response.data?.data)
         ? response.data.data
         : Array.isArray(response.data)
@@ -218,7 +213,6 @@ export const reviewService = {
     }
   },
 
-  
   getReviewById: async function (id: string): Promise<ApiResponse<Review>> {
     try {
       const cookieStore = await cookies();
@@ -232,7 +226,7 @@ export const reviewService = {
       });
 
       if (!res.ok) {
-        const errorData = await res.json().catch(() => ());
+        const errorData = await res.json().catch(() => null);
         return {
           data: null,
           error: {
